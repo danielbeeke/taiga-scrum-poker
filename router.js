@@ -1,6 +1,10 @@
 Router.configure({
   layoutTemplate: 'main',
   loadingTemplate: 'loading',
+  onBeforeAction: function () {
+    Meteor.call('rooms-user-leave', this.params._id);
+    this.next();
+  }
 });
 
 Router.route('/', function () {
@@ -38,5 +42,9 @@ Router.route('/rooms/:_id', {
   title: 'Room',
   waitOn: function() {
     return Meteor.subscribe('rooms', this.params._id);
+  },
+  onBeforeAction: function () {
+    Meteor.call('rooms-user-visit', this.params._id);
+    this.next();
   }
 });
