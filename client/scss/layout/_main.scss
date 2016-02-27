@@ -1,0 +1,16 @@
+.overview {
+  display: inline-flex;
+  align-items: flex-start;
+  padding: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0;
+}
+
+.has-selected-userstories {
+  .overview {
+    padding-right: 420px;
+  }
+}

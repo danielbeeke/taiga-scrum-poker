@@ -1,0 +1,16 @@
+<template name="main">
+  <section class="header">
+
+    <nav class="main-navigation">
+      {{#if user}}
+        <a href="{{ pathFor route='logout' }}" class="button">Logout</a>
+      {{/if}}
+    </nav>
+
+    {{ toolbar }}
+
+    <h1 class="page-title">{{{ pageTitle }}}</h1>
+  </section>
+
+  {{> yield}}
+</template>

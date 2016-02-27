@@ -1,0 +1,17 @@
+<template name="roomsCreate">
+    <form id="rooms-create">
+
+        <input type="text" name="name" placeholder="Name">
+
+        <select name="project">
+            <option value="_none" disabled selected hidden>Please select a project</option>
+
+            {{#each projects }}
+                <option value="{{ slug }}">{{ name }}</option>
+            {{/each}}
+        </select>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</template>

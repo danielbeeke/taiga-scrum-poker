@@ -1,0 +1,7 @@
+<template name="rooms">
+    <a href="{{ pathFor 'rooms-create' }}">Create a room</a>
+
+    {{#each rooms }}
+        {{ name }}
+    {{/each}}
+</template>

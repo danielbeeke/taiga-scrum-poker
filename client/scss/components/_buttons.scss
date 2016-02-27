@@ -1,0 +1,13 @@
+.button {
+  padding: 10px 15px;
+  color: $grey-dark;
+  text-decoration: none;
+  background: $yellow;
+  cursor: pointer;
+  border: 0;
+
+  &:hover {
+    background: $yellow-dark;
+    color: $black;
+  }
+}
