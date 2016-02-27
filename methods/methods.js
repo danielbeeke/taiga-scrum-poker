@@ -1,5 +1,6 @@
 Meteor.methods({
     'rooms-create': function (room) {
+        room.uid = this.userId;
         return Rooms.insert(room)
     },
     'rooms-user-visit': function (roomId) {

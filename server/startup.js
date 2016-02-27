@@ -32,3 +32,7 @@ Meteor.publish('rooms', function(roomId) {
         return Rooms.find();
     }
 })
+
+Meteor.publish("users", function () {
+    return Meteor.users.find();
+});

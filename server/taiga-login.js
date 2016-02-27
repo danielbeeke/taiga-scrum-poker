@@ -10,9 +10,9 @@ Accounts.registerLoginHandler('taiga', function(loginRequest) {
 
   if (result.statusCode == 200) {
     var userId = null;
-    var user = Meteor.users.findOne({username: loginRequest.name});
+    var user = Meteor.users.findOne({ username: loginRequest.name });
     if(!user) {
-      userId = Meteor.users.insert({username: loginRequest.name});
+      userId = Meteor.users.insert({ username: loginRequest.name });
     } else {
       userId = user._id;
     }

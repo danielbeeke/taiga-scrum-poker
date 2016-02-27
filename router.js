@@ -25,7 +25,10 @@ Router.route('/rooms', {
   name: 'rooms',
   title: 'Rooms',
   waitOn: function() {
-    return Meteor.subscribe('rooms');
+    return [
+      Meteor.subscribe('rooms'),
+      Meteor.subscribe('users')
+    ];
   }
 });
 
@@ -41,7 +44,10 @@ Router.route('/rooms/:_id', {
   name: 'room',
   title: 'Room',
   waitOn: function() {
-    return Meteor.subscribe('rooms', this.params._id);
+    return [
+      Meteor.subscribe('rooms'),
+      Meteor.subscribe('users')
+    ];
   },
   onBeforeAction: function () {
     Meteor.call('rooms-user-visit', this.params._id);
