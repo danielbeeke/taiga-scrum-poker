@@ -12,5 +12,12 @@ Meteor.methods({
         Rooms.update({ 'members': this.userId }, {
             $pull: { 'members': this.userId }
         });
+    },
+    'rooms-set-current-userstory': function (roomId, userStoryId) {
+        console.log('test')
+
+        Rooms.update(roomId, {
+            $set: { 'currentUserStoryId': userStoryId }
+        });
     }
 })

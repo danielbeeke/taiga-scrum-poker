@@ -6,23 +6,7 @@
 @import 'base/elements';
 @import 'base/typography';
 
-@import 'components/scroll-shadows';
-@import 'components/breadcrumb';
 @import 'components/buttons';
-@import 'components/forms';
-@import 'components/header';
-@import 'components/page-description';
-@import 'components/selectable';
-@import 'components/selected-userstories';
-@import 'components/sortable';
-@import 'components/toolbar';
-@import 'components/page-title';
-@import 'components/main-navigation';
-@import 'components/selected-userstory';
-
-@import 'components/teasers/project';
-@import 'components/teasers/step';
-@import 'components/teasers/userflow';
-@import 'components/teasers/userstory';
+@import 'components/card';
 
 @import 'layout/main';

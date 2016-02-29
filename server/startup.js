@@ -1,8 +1,6 @@
-Meteor.publish('projectsHandle', function() {
+Meteor.publish('projects', function() {
     var self = this;
-
     if (this.userId) {
-
         var user = Meteor.users.findOne(this.userId);
 
         try {
@@ -14,6 +12,30 @@ Meteor.publish('projectsHandle', function() {
 
             _.each(response.data, function(item) {
                 self.added('projects', item.id, item);
+            });
+
+            self.ready();
+
+        } catch(error) {
+            console.log(error);
+        }
+    }
+});
+
+Meteor.publish('userstories', function(projectId) {
+    var self = this;
+    if (this.userId) {
+        var user = Meteor.users.findOne(this.userId);
+
+        try {
+            var response = HTTP.get('http://localhost:8000/api/v1/userstories?project=' + projectId, {
+                headers: {
+                    'Authorization': 'Bearer ' + user.taiga.bearer
+                }
+            });
+
+            _.each(response.data, function(item) {
+                self.added('userstories', item.id, item);
             });
 
             self.ready();

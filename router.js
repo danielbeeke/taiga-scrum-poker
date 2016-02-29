@@ -2,6 +2,9 @@ Router.configure({
   layoutTemplate: 'main',
   loadingTemplate: 'loading',
   onBeforeAction: function () {
+    if (!Meteor.user()) {
+      Router.go('login')
+    }
     Meteor.call('rooms-user-leave', this.params._id);
     this.next();
   }
@@ -36,7 +39,7 @@ Router.route('/rooms/create', {
   name: 'rooms-create',
   title: 'Create a room',
   waitOn: function() {
-    return Meteor.subscribe('projectsHandle');
+    return Meteor.subscribe('projects');
   }
 });
 
@@ -45,8 +48,8 @@ Router.route('/rooms/:_id', {
   title: 'Room',
   waitOn: function() {
     return [
-      Meteor.subscribe('rooms'),
-      Meteor.subscribe('users')
+      Meteor.subscribe('rooms', this.params._id),
+      Meteor.subscribe('users'),
     ];
   },
   onBeforeAction: function () {

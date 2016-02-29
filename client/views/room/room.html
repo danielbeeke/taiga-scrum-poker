@@ -1,7 +1,11 @@
 <template name="room">
-    {{ room.name }}
+    <h1>{{ room.name }}</h1>
+
+    <h2>{{ room.project }}</h2>
+
+    <h3>{{ currentUserStory.subject }}</h3>
 
     {{#each members}}
-     {{> memberCard}}
+        {{> memberCard}}
     {{/each}}
 </template>
