@@ -53,7 +53,14 @@ Meteor.publish('rooms', function(roomId) {
     else {
         return Rooms.find();
     }
-})
+});
+
+
+Meteor.publish('estimations', function(roomId) {
+    if (roomId) {
+        return Estimations.find({ room: roomId });
+    }
+});
 
 Meteor.publish("users", function () {
     return Meteor.users.find();

@@ -49,6 +49,19 @@ Router.route('/rooms/:_id', {
   waitOn: function() {
     return [
       Meteor.subscribe('rooms', this.params._id),
+      Meteor.subscribe('estimations', this.params._id),
+      Meteor.subscribe('users'),
+    ];
+  }
+});
+
+Router.route('/rooms/:_id/play', {
+  name: 'room-play',
+  title: 'Room',
+  waitOn: function() {
+    return [
+      Meteor.subscribe('rooms', this.params._id),
+      Meteor.subscribe('estimations', this.params._id),
       Meteor.subscribe('users'),
     ];
   },

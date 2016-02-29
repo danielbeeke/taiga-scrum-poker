@@ -23,6 +23,22 @@ var helpers = {
                 Meteor.call('rooms-set-current-userstory', helpers.room()._id, currentUserStoryId);
             }
         }
+    },
+    allMembersHaveChosen: function () {
+        return Estimations.find({
+                userStoryId: helpers.room().currentUserStoryId,
+                room: helpers.room()._id
+            }).fetch().length == helpers.room().members.length
+
+    },
+    memberHasChosen: function () {
+        var memberEstimation = Estimations.findOne({
+            uid: this._id,
+            userStoryId: helpers.room().currentUserStoryId,
+            room: helpers.room()._id
+        });
+
+        return memberEstimation;
     }
 };
 

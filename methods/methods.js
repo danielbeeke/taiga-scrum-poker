@@ -14,10 +14,20 @@ Meteor.methods({
         });
     },
     'rooms-set-current-userstory': function (roomId, userStoryId) {
-        console.log('test')
-
         Rooms.update(roomId, {
             $set: { 'currentUserStoryId': userStoryId }
         });
+    },
+    'estimation-create': function (estimationSelector, number) {
+        estimationSelector.uid = this.userId;
+
+        Estimations.upsert(estimationSelector, {
+            $set: { 'number': number }
+        });
+    }    ,
+    'estimation-delete': function (estimationSelector) {
+        estimationSelector.uid = this.userId;
+
+        Estimations.remove(estimationSelector);
     }
 })
