@@ -18,11 +18,11 @@ Meteor.methods({
             $set: { 'currentUserStoryId': userStoryId }
         });
     },
-    'estimation-create': function (estimationSelector, number) {
+    'estimation-create': function (estimationSelector, numberId) {
         estimationSelector.uid = this.userId;
 
         Estimations.upsert(estimationSelector, {
-            $set: { 'number': number }
+            $set: { 'numberId': numberId }
         });
     }    ,
     'estimation-delete': function (estimationSelector) {

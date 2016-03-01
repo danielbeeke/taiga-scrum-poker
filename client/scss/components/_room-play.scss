@@ -17,7 +17,12 @@
     top: 0;
     left: 0;
     cursor: pointer;
-    width: 700%;
+
+    @for $i from 1 through 30 {
+      &[data-count="#{$i}"] {
+        width: 100% * $i;
+      }
+    }
   }
 
   .card.active {

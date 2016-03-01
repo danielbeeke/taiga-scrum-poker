@@ -2,10 +2,10 @@
 
     <div class="room-play">
         <div id="card-carousel" class="dragdealer">
-            <div class="handle">
+            <div class="handle" data-count="{{ cards.length }}">
                 {{#each cards}}
                     <div class="card {{#if activeCard }} active {{/if}}">
-                        <div class="number">{{ this }}</div>
+                        <div class="number">{{ name }}</div>
                     </div>
                 {{/each}}
             </div>

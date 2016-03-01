@@ -1,47 +1,44 @@
 Template.roomPlay.events({
     "click .card": function (event, template) {
-        var number = Blaze.getData(event.currentTarget);
+        var numberId = Blaze.getData(event.currentTarget).id;
+        var estimationSelector = {
+            room: helpers.room()._id,
+            userStoryId: helpers.room().currentUserStoryId
+        };
 
-        if (helpers.memberHasChosen() && helpers.memberHasChosen().number == number) {
-            var estimationSelector = {
-                room: helpers.room()._id,
-                userStoryId: helpers.room().currentUserStoryId
-            };
-
+        if (helpers.memberHasChosen() && helpers.memberHasChosen().numberId == numberId) {
             Meteor.call('estimation-delete', estimationSelector)
         }
         else {
-            var estimationSelector = {
-                room: helpers.room()._id,
-                userStoryId: helpers.room().currentUserStoryId
-            };
-
-            Meteor.call('estimation-create', estimationSelector, number)
+            Meteor.call('estimation-create', estimationSelector, numberId)
         }
     }
 });
 
-
 var helpers = {
     cards: function () {
-        return [1,2,3,5,8,10,20]
+        if (helpers.room().project) {
+            Meteor.subscribe('points', helpers.room().project)
+            var points = Points.find().fetch();
+
+            return points
+        }
     },
     room: function() {
         return Rooms.findOne({ _id: Router.current().params._id })
     },
     memberHasChosen: function () {
-        var memberEstimation = Estimations.findOne({
+        return Estimations.findOne({
             uid: Meteor.user()._id,
             userStoryId: helpers.room().currentUserStoryId,
             room: helpers.room()._id
         });
-
-        return memberEstimation;
     },
     activeCard: function () {
-        var chosenNumber = helpers.memberHasChosen().number;
-
-        return this.toString() == chosenNumber
+        if (helpers.memberHasChosen()) {
+            var chosenNumber = helpers.memberHasChosen().numberId;
+            return this.id == chosenNumber
+        }
     }
 };
 
