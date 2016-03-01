@@ -1,0 +1,27 @@
+.room-play {
+  overflow: hidden;
+  text-align: center;
+  @include clearfix;
+  height: 100vh;
+  width: 100vw;
+
+  .dragdealer {
+    position: relative;
+    height: 100%;
+    width: calc(100vw - 80px);
+    display: inline-block;
+  }
+
+  .dragdealer .handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    width: 700%;
+  }
+
+  .card.active {
+    transform: translateY(-30px);
+    box-shadow: 0 3px 13px 0 #aaa, inset 0 0 0 5px blue;
+  }
+}

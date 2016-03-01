@@ -1,12 +1,16 @@
 <template name="roomPlay">
-    Play!
 
-    {{#each cards}}
-        <div class="card">
-            <div class="number">{{ this }}</div>
+    <div class="room-play">
+        <div id="card-carousel" class="dragdealer">
+            <div class="handle">
+                {{#each cards}}
+                    <div class="card {{#if activeCard }} active {{/if}}">
+                        <div class="number">{{ this }}</div>
+                    </div>
+                {{/each}}
+            </div>
         </div>
-    {{/each}}
+    </div>
 
-
-    <div class="delete">Delete</div>
+    <!--<div class="delete">Delete</div>-->
 </template>

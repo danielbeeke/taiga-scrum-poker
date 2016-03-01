@@ -1,0 +1,18 @@
+.room {
+  .members {
+    text-align: center;
+  }
+
+  .card {
+    &.chosen {
+      transform: translateY(-30px);
+      box-shadow: 0 3px 13px 0 #aaa, inset 0 0 0 5px blue;
+    }
+
+    &.hidden-numbers {
+      .number {
+        opacity: 0;
+      }
+    }
+  }
+}

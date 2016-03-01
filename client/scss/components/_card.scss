@@ -1,24 +1,23 @@
 .card {
   border-radius: 3px;
-  border: 1px dashed #ccc;
-  width: 300px;
-  max-width: calc(100vw - 40px);
-  float: left;
-  clear: both;
+  //border: 1px dashed #ccc;
+  width: calc(100vw - 120px);
+  height: calc(100vh - 180px);
+
+  max-width: 240px;
+  max-height: 400px;
+
   position: relative;
-  margin: 10px;
-  box-shadow: 0 2px 10px -3px rgba(black, 0);
+  margin: 140px 20px 0 20px;
+  //box-shadow: 0 2px 10px -3px rgba(black, 0);
   cursor: pointer;
+  float: left;
   transition: transform $speed $easing, box-shadow $speed $easing, border $speed $easing;
   transform: translateY(0);
   background-color: white;
 
-  &:after {
-    content: '';
-    display: block;
-    padding-bottom: 136%;
-    width: 100%;
-  }
+  border: 1px solid black;
+  box-shadow: 0 3px 13px 0 #aaa, inset 0 0 0 5px white;
 
   .number {
     position: absolute;
@@ -29,17 +28,5 @@
     opacity: 1;
     transition: opacity $speed $easing;
     transform: translate(-50%, -50%);
-  }
-
-  &.hidden-numbers {
-    .number {
-      opacity: 0;
-    }
-  }
-
-  &.chosen {
-    border: 1px solid black;
-    transform: translateY(-40px);
-    box-shadow: 0 3px 13px 0 #aaa;
   }
 }

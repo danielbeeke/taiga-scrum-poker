@@ -57,6 +57,7 @@ Router.route('/rooms/:_id', {
 
 Router.route('/rooms/:_id/play', {
   name: 'room-play',
+  layoutTemplate: false,
   title: 'Room',
   waitOn: function() {
     return [

@@ -1,19 +1,23 @@
 <template name="room">
-    <h1>{{ room.name }}</h1>
+    <div class="room">
+        <h1>{{ room.name }}</h1>
 
-    <h2>{{ room.project }}</h2>
+        <h2>{{ room.project }}</h2>
 
-    <h3>{{ currentUserStory.subject }}</h3>
+        <h3>{{ currentUserStory.subject }}</h3>
 
-    {{#each members}}
-        <div class="member">
+        <div class="members">
+            {{#each members}}
+                <div class="member">
 
-            <div class="avatar" style="background-image: url({{ avatar }});"></div>
+                    <div class="avatar" style="background-image: url({{ avatar }});"></div>
+                    <br>
+                    <div class="card back-side {{#if memberHasChosen }} chosen {{/if}} {{#unless allMembersHaveChosen}} hidden-numbers {{/unless}}">
+                        <div class="number">{{ memberHasChosen.number }}</div>
+                    </div>
 
-            <div class="card back-side {{#if memberHasChosen }} chosen {{/if}} {{#unless allMembersHaveChosen}} hidden-numbers {{/unless}}">
-                <div class="number">{{ memberHasChosen.number }}</div>
-            </div>
-
+                </div>
+            {{/each}}
         </div>
-    {{/each}}
+    </div>
 </template>

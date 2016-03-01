@@ -20,3 +20,4 @@ iron:router
 http
 seba:minifiers-autoprefixer
 fourseven:scss
+chriswessels:hammer
