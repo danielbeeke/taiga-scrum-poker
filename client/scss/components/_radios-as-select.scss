@@ -60,8 +60,8 @@
     max-height: 0;
   }
 
-  input:checked + .label,
-  &:hover input + .label {
+  &:not(.just-clicked):hover input + .label,
+  input:checked + .label {
     max-height: 53px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -69,7 +69,7 @@
     color: $grey-middle;
   }
 
-  &:hover {
+  &:not(.just-clicked):hover {
     .form-item-inner {
       max-height: 600px;
     }

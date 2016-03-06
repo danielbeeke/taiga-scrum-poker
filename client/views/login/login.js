@@ -2,7 +2,8 @@ Template.login.events({
   "click .button": function (event, template) {
     var login = {
       name: template.find('[name="name"]').value,
-      password: template.find('[name="password"]').value
+      password: template.find('[name="password"]').value,
+      url: template.find('[name="taiga-url"]:checked').value
     };
 
     Accounts.callLoginMethod({
@@ -15,7 +16,17 @@ Template.login.events({
     })
   },
   "click #create-taige-url": function (event, template) {
-    Router.go('instance-create');
+    setTimeout(function () {
+      Router.go('instance-create');
+    }, 500)
+  },
+  "click .label": function (event, template) {
+    $(template.find('.radios-as-select')).addClass('just-clicked').one('mouseout', function () {
+      var that = this;
+      setTimeout(function () {
+        $(that).removeClass('just-clicked')
+      }, 1000)
+    })
   }
 });
 

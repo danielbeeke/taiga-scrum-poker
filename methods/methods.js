@@ -1,6 +1,11 @@
 Meteor.methods({
     'rooms-create': function (room) {
         room.uid = this.userId;
+
+        var currentUser = Meteor.users.findOne({ _id: this.userId });
+
+        room.instance = currentUser.taiga.url;
+
         return Rooms.insert(room)
     },
     'rooms-user-visit': function (roomId) {

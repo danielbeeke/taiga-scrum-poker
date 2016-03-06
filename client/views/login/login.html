@@ -15,14 +15,14 @@
       <div class="form-item-inner">
         {{#each instances}}
         <div class="radio-option">
-          <input type="radio" name="taiga-url" value="{{ _id }}" id="taiga-url-{{ _id }}" {{ first(@index) }}>
+          <input type="radio" name="taiga-url" value="{{ url }}" id="taiga-url-{{ _id }}" {{ first(@index) }}>
           <label class="label" for="taiga-url-{{ _id }}">{{ url }}</label>
         </div>
         {{/each}}
 
         <div class="radio-option">
-          <input type="radio" name="taiga-url-create" value="create" id="taiga-url-create">
-          <label class="label" for="taiga-url-create" id="create-taige-url"><span class="label-inner">Add a new taiga instance</span></label>
+          <input type="radio" name="taiga-url" value="create" id="taiga-url-create">
+          <label class="label" for="taiga-url-create" id="create-taige-url">Add a new taiga instance</label>
         </div>
       </div>
     </div>

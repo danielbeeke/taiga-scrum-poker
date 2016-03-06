@@ -4,7 +4,7 @@ Meteor.publish('projects', function() {
         var user = Meteor.users.findOne(this.userId);
 
         try {
-            var response = HTTP.get('http://localhost:8000/api/v1/projects', {
+            var response = HTTP.get(user.taiga.url + '/projects?member=' + user.taiga.id, {
                 headers: {
                     'Authorization': 'Bearer ' + user.taiga.bearer
                 }
@@ -28,7 +28,7 @@ Meteor.publish('userstories', function(projectId) {
         var user = Meteor.users.findOne(this.userId);
 
         try {
-            var response = HTTP.get('http://localhost:8000/api/v1/userstories?project=' + projectId, {
+            var response = HTTP.get(user.taiga.url + '/userstories?project=' + projectId, {
                 headers: {
                     'Authorization': 'Bearer ' + user.taiga.bearer
                 }
@@ -54,7 +54,7 @@ Meteor.publish('points', function(projectId) {
         var user = Meteor.users.findOne(this.userId);
         try {
 
-            var response = HTTP.get('http://localhost:8000/api/v1/points?project=1', {
+            var response = HTTP.get(user.taiga.url + '/points?project=1', {
                 headers: {
                     'Authorization': 'Bearer ' + user.taiga.bearer
                 }
@@ -76,11 +76,13 @@ Meteor.publish('points', function(projectId) {
 });
 
 Meteor.publish('rooms', function(roomId) {
+    var user = Meteor.users.findOne(this.userId);
+
     if (roomId) {
-        return Rooms.find({ _id: roomId });
+        return Rooms.find({ _id: roomId, instance: user.taiga.url });
     }
     else {
-        return Rooms.find();
+        return Rooms.find({instance: user.taiga.url});
     }
 });
 

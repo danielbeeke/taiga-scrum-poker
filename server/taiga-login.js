@@ -1,6 +1,6 @@
 Accounts.registerLoginHandler('taiga', function(loginRequest) {
 
-  var result = HTTP.call('POST', 'http://localhost:8000/api/v1/auth', {
+  var result = HTTP.call('POST', loginRequest.url + '/auth', {
     params: {
       type: 'normal',
       username: loginRequest.name,
@@ -17,8 +17,6 @@ Accounts.registerLoginHandler('taiga', function(loginRequest) {
       userId = user._id;
     }
 
-    console.log()
-
     // Creating the token and adding to the user
     var stampedToken = Accounts._generateStampedLoginToken();
     // Hashing is something added with Meteor 0.7.x,
@@ -28,6 +26,8 @@ Accounts.registerLoginHandler('taiga', function(loginRequest) {
     Meteor.users.update(userId, {
       $set: {
         'taiga.bearer': result.data.auth_token,
+        'taiga.id': result.data.id,
+        'taiga.url': loginRequest.url,
         'avatar': result.data.photo
       },
       $push: { 'services.resume.loginTokens': hashStampedToken }
