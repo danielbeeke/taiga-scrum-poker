@@ -1,5 +1,7 @@
 Template.login.events({
-  "click .button": function (event, template) {
+  "submit #login-form": function (event, template) {
+    event.preventDefault()
+
     var login = {
       name: template.find('[name="name"]').value,
       password: template.find('[name="password"]').value,
@@ -8,12 +10,19 @@ Template.login.events({
 
     Accounts.callLoginMethod({
       methodArguments: [login],
-      userCallback: function (err) {
-        if (!err) {
+      userCallback: function (error) {
+        if (!error) {
           Router.go('rooms')
+        }
+        else {
+          Session.set('errorMessage', 'Something went wrong, please try again.');
         }
       }
     })
+
+  },
+  "click .button": function (event, template) {
+    $(template.find('#login-form')).submit()
   },
   "click #create-taige-url": function (event, template) {
     setTimeout(function () {
@@ -32,11 +41,14 @@ Template.login.events({
 
 Template.login.helpers({
   instances: function () {
-    return Instances.find()
+    return Instances.find({}, { sort: {'used': -1} })
   },
   first: function (index) {
     if (index == 0) {
       return 'checked'
     }
+  },
+  errorMessage: function () {
+    return Session.get('errorMessage');
   }
 })

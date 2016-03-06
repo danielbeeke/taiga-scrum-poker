@@ -6,6 +6,11 @@ Router.configure({
     if (!Meteor.user() && routeName != 'instance-create') {
       Router.go('login')
     }
+
+    if (routeName == 'room-play') {
+      Meteor.call('rooms-user-visit', this.params._id);
+    }
+
     if (routeName != 'room' && routeName != 'room-play') {
       Meteor.call('rooms-user-leave', this.params._id);
     }
@@ -39,7 +44,8 @@ Router.route('/rooms', {
   waitOn: function() {
     return [
       Meteor.subscribe('rooms'),
-      Meteor.subscribe('users')
+      Meteor.subscribe('users'),
+      Meteor.subscribe('projects')
     ];
   }
 });
@@ -74,10 +80,6 @@ Router.route('/rooms/:_id/play', {
       Meteor.subscribe('estimations', this.params._id),
       Meteor.subscribe('users')
     ];
-  },
-  onBeforeAction: function () {
-    Meteor.call('rooms-user-visit', this.params._id);
-    this.next();
   }
 });
 

@@ -15,3 +15,8 @@ ul, ol {
   padding: 0;
   list-style: none;
 }
+
+input.hidden {
+  visibility: hidden;
+  position: absolute;
+}

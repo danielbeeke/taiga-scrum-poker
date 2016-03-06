@@ -1,6 +1,9 @@
 <template name="login">
 
   <form id="login-form" class="login-form">
+
+    <p>{{ errorMessage }}</p>
+
     <div class="form-item logo" style="background-image: url('/logo.svg');"></div>
 
     <div class="form-item">
@@ -29,6 +32,7 @@
 
     <div class="form-item">
       <a href="#" class="button primary arrow-right block">Login <span class="arrow"></span></a>
+      <input type="submit" class="hidden">
     </div>
 
   </form>

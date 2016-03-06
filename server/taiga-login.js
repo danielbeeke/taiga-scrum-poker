@@ -33,6 +33,12 @@ Accounts.registerLoginHandler('taiga', function(loginRequest) {
       $push: { 'services.resume.loginTokens': hashStampedToken }
     });
 
+    Instances.update({ url: loginRequest.url }, {
+      $set: {
+        'used': Date.now()
+      },
+    });
+
     //sending token along with the userId
     return {
       userId: userId,

@@ -28,7 +28,7 @@ Meteor.publish('userstories', function(projectId) {
         var user = Meteor.users.findOne(this.userId);
 
         try {
-            var response = HTTP.get(user.taiga.url + '/userstories?project=' + projectId, {
+            var response = HTTP.get(user.taiga.url + '/userstories?project=' + parseInt(projectId), {
                 headers: {
                     'Authorization': 'Bearer ' + user.taiga.bearer
                 }
@@ -74,13 +74,15 @@ Meteor.publish('points', function(projectId) {
 });
 
 Meteor.publish('rooms', function(roomId) {
-    var user = Meteor.users.findOne(this.userId);
+    if (this.userId) {
+        var user = Meteor.users.findOne(this.userId);
 
-    if (roomId) {
-        return Rooms.find({ _id: roomId, instance: user.taiga.url });
-    }
-    else {
-        return Rooms.find({instance: user.taiga.url});
+        if (roomId) {
+            return Rooms.find({ _id: roomId, instance: user.taiga.url });
+        }
+        else {
+            return Rooms.find({instance: user.taiga.url});
+        }
     }
 });
 

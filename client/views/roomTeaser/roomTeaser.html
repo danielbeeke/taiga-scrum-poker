@@ -1,9 +1,10 @@
 <template name="roomTeaser">
     <a class="room teaser" href="{{ pathFor 'room' }}">
         <h3 class="title">{{ name }}</h3>
+        <div class="title">{{ project.name }}</div>
         <ul class="members">
             {{#each members}}
-            <li>{{ username }}</li>
+            <img src="{{ avatar }}">
             {{/each}}
         </ul>
     </a>
