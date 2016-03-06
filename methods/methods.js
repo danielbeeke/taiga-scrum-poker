@@ -22,9 +22,15 @@ Meteor.methods({
         estimationSelector.uid = this.userId;
 
         Estimations.upsert(estimationSelector, {
-            $set: { 'numberId': numberId }
+            $set: {'numberId': numberId}
         });
-    }    ,
+    },
+    'instance-create': function (instanceUrl) {
+        console.log(instanceUrl)
+        Instances.upsert({url: instanceUrl}, {
+            $set: {'url': instanceUrl}
+        });
+    },
     'estimation-delete': function (estimationSelector) {
         estimationSelector.uid = this.userId;
 

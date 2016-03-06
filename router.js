@@ -2,7 +2,8 @@ Router.configure({
   layoutTemplate: 'main',
   loadingTemplate: 'loading',
   onBeforeAction: function () {
-    if (!Meteor.user()) {
+    var routeName = Router.current().route.getName();
+    if (!Meteor.user() && routeName != 'instance-create') {
       Router.go('login')
     }
     Meteor.call('rooms-user-leave', this.params._id);
@@ -18,6 +19,11 @@ Router.route('/login', {
   name: 'login',
   title: 'Login',
   layoutTemplate: false,
+  waitOn: function() {
+    return [
+      Meteor.subscribe('instances')
+    ];
+  }
 });
 
 Router.route('/logout', function () {
@@ -70,5 +76,14 @@ Router.route('/rooms/:_id/play', {
   onBeforeAction: function () {
     Meteor.call('rooms-user-visit', this.params._id);
     this.next();
+  }
+});
+
+
+Router.route('/instances/create', {
+  name: 'instance-create',
+  title: 'Create an instance',
+  waitOn: function() {
+    return Meteor.subscribe('instances');
   }
 });

@@ -13,19 +13,16 @@
 
     <div class="form-item radios-as-select less-visually-important">
       <div class="form-item-inner">
+        {{#each instances}}
         <div class="radio-option">
-          <input type="radio" name="taiga-url" value="1" id="taiga-url-1" checked>
-          <label class="label" for="taiga-url-1"><span class="scheme">https://</span><span class="label-inner">taiga.io</span></label>
+          <input type="radio" name="taiga-url" value="{{ _id }}" id="taiga-url-{{ _id }}" {{ first(@index) }}>
+          <label class="label" for="taiga-url-{{ _id }}">{{ url }}</label>
         </div>
+        {{/each}}
 
         <div class="radio-option">
-          <input type="radio" name="taiga-url" value="2" id="taiga-url-2">
-          <label class="label" for="taiga-url-2"><span class="scheme">http://</span><span class="label-inner">localhost</span><span class="port">:8000</span></label>
-        </div>
-
-        <div class="radio-option">
-          <input type="radio" name="taiga-url" value="3" id="taiga-url-3">
-          <label class="label" for="taiga-url-3"><span class="scheme">https://</span><span class="label-inner">scrum.studiofonkel.nl</span></label>
+          <input type="radio" name="taiga-url-create" value="create" id="taiga-url-create">
+          <label class="label" for="taiga-url-create" id="create-taige-url"><span class="label-inner">Add a new taiga instance</span></label>
         </div>
       </div>
     </div>

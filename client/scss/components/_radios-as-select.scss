@@ -27,7 +27,7 @@
     z-index: 2;
   }
   
-  input {
+  input[type="radio"] {
     position: absolute;
     float: left;
     height: 1px;
@@ -36,6 +36,7 @@
   }
 
   .label {
+    white-space: nowrap;
     padding-left: $padding;
     padding-right: $padding + 30px;
     display: block;

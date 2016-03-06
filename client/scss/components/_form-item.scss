@@ -17,11 +17,18 @@
     padding: ($padding / 2) $padding;
     background-image: none !important;
     width: 100%;
-    font-size: 26px;
+    font-size: 20px;
     font-family: 'lane';
 
     &::placeholder {
       text-transform: uppercase;
     }
   }
+}
+
+form {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: $padding;
 }

@@ -64,7 +64,6 @@ Meteor.publish('points', function(projectId) {
 
             _.each(response.data, function(item) {
                 self.added('points', item.id, item);
-                console.log(item)
             });
 
             self.ready();
@@ -85,6 +84,9 @@ Meteor.publish('rooms', function(roomId) {
     }
 });
 
+Meteor.publish('instances', function() {
+    return Instances.find();
+});
 
 Meteor.publish('estimations', function(roomId) {
     if (roomId) {
