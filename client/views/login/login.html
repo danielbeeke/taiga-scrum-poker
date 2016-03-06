@@ -1,9 +1,39 @@
 <template name="login">
 
-  <form id="login">
-    <input type="text" name="name" placeholder="Name">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Login" class="button">
+  <form id="login-form" class="login-form">
+    <div class="form-item logo" style="background-image: url('/logo.svg');"></div>
+
+    <div class="form-item">
+      <input type="text" name="name" placeholder="Username or email">
+    </div>
+
+    <div class="form-item">
+      <input type="password" name="password" placeholder="Password">
+    </div>
+
+    <div class="form-item radios-as-select less-visually-important">
+      <div class="form-item-inner">
+        <div class="radio-option">
+          <input type="radio" name="taiga-url" value="1" id="taiga-url-1" checked>
+          <label class="label" for="taiga-url-1"><span class="scheme">https://</span><span class="label-inner">taiga.io</span></label>
+        </div>
+
+        <div class="radio-option">
+          <input type="radio" name="taiga-url" value="2" id="taiga-url-2">
+          <label class="label" for="taiga-url-2"><span class="scheme">http://</span><span class="label-inner">localhost</span><span class="port">:8000</span></label>
+        </div>
+
+        <div class="radio-option">
+          <input type="radio" name="taiga-url" value="3" id="taiga-url-3">
+          <label class="label" for="taiga-url-3"><span class="scheme">https://</span><span class="label-inner">scrum.studiofonkel.nl</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <a href="#" class="button primary arrow-right block">Login <span class="arrow"></span></a>
+    </div>
+
   </form>
 
 </template>

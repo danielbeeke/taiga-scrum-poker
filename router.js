@@ -16,7 +16,8 @@ Router.route('/', function () {
 
 Router.route('/login', {
   name: 'login',
-  title: 'Login'
+  title: 'Login',
+  layoutTemplate: false,
 });
 
 Router.route('/logout', function () {

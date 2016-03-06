@@ -1,0 +1,27 @@
+.form-item {
+  float: left;
+  clear: both;
+  width: 100%;
+  position: relative;
+  @include clearfix;
+
+  & + & {
+    margin-top: $padding;
+  }
+
+  [type="text"],
+  [type="password"] {
+    background-color: $yellow;
+    border: 0;
+    border-radius: $padding-small;
+    padding: ($padding / 2) $padding;
+    background-image: none !important;
+    width: 100%;
+    font-size: 26px;
+    font-family: 'lane';
+
+    &::placeholder {
+      text-transform: uppercase;
+    }
+  }
+}

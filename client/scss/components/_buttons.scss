@@ -1,13 +1,67 @@
 .button {
-  padding: 10px 15px;
-  color: $grey-dark;
+  padding: ($padding / 2) $padding;
+  color: white;
   text-decoration: none;
-  background: $yellow;
+  background-color: $green-light;
   cursor: pointer;
+  border-radius: $padding-small;
   border: 0;
+  text-transform: uppercase;
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  font-family: 'gnuolane';
+  position: relative;
+  line-height: 36px;
+  font-size: 30px;
+  letter-spacing: 1.2px;
 
-  &:hover {
-    background: $yellow-dark;
-    color: $black;
+  &.block {
+    width: 100%;
   }
+
+  &.arrow-right {
+    $arrow: 8px;
+
+    .arrow {
+      background-color: $green-dark;
+      height: 6px;
+      width: 20px;
+      position: absolute;
+      display: block;
+      right: $padding + $arrow;
+      top: 50%;
+      transform: translate(0, -50%);
+      transition: transform $speed $easing, width $speed $easing;
+
+      &:after {
+        display: block;
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 100%;
+        border-style: solid;
+        border-width: $arrow 0 $arrow $arrow;
+        border-color: transparent transparent transparent $green-dark;
+        pointer-events: none;
+        z-index: 2;
+      }
+    }
+
+    &:hover {
+      .arrow {
+        animation: buttonArrowSpecial $easing $speed * 2 forwards 1;
+      }
+    }
+  }
+}
+
+@keyframes(buttonArrowSpecial) {
+  0%   { transform: translate(0, -50%); opacity: 1; }
+  25% { transform: translate(70px, -50%); opacity: 1; }
+  26% { transform: translate(0, -50%); opacity: 0; }
+  100% { transform: translate(0, -50%); opacity: 1; }
 }

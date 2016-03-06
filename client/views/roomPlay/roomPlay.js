@@ -17,12 +17,9 @@ Template.roomPlay.events({
 
 var helpers = {
     cards: function () {
-        if (helpers.room().project) {
-            Meteor.subscribe('points', helpers.room().project)
-            var points = Points.find().fetch();
-
-            return points
-        }
+        console.log(helpers.room().project)
+        Meteor.subscribe('points', helpers.room().project)
+        return Points.find();
     },
     room: function() {
         return Rooms.findOne({ _id: Router.current().params._id })
@@ -46,7 +43,7 @@ Template.roomPlay.helpers(helpers);
 
 Template.roomPlay.onRendered(function () {
     new Dragdealer('card-carousel', {
-        steps: helpers.cards().length,
+        steps: 12,
         speed: 0.3,
         loose: true,
         requestAnimationFrame: true

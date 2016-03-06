@@ -1,0 +1,34 @@
+.login-form {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: $padding;
+
+  .logo {
+    padding-bottom: 30%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .scheme, .port {
+    max-width: 0;
+    display: inline-block;
+    transition: max-width $speed $easing;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-top: -4px;
+  }
+
+  .label-inner {
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -4px;
+  }
+
+  .radios-as-select:hover {
+    .scheme, .port {
+      max-width: 200px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 Template.login.events({
-  "submit #login": function (event, template) {
+  "submit #login-form": function (event, template) {
     event.preventDefault();
 
     var login = {

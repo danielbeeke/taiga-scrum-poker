@@ -49,18 +49,22 @@ Meteor.publish('userstories', function(projectId) {
 
 Meteor.publish('points', function(projectId) {
     var self = this;
+
     if (this.userId) {
         var user = Meteor.users.findOne(this.userId);
-
         try {
-            var response = HTTP.get('http://localhost:8000/api/v1/points?project=' + parseInt(projectId), {
+
+            var response = HTTP.get('http://localhost:8000/api/v1/points?project=1', {
                 headers: {
                     'Authorization': 'Bearer ' + user.taiga.bearer
                 }
             });
 
+            console.log(response.data)
+
             _.each(response.data, function(item) {
                 self.added('points', item.id, item);
+                console.log(item)
             });
 
             self.ready();
@@ -68,6 +72,7 @@ Meteor.publish('points', function(projectId) {
         } catch(error) {
             console.log(error);
         }
+
     }
 });
 
