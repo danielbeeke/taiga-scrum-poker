@@ -54,13 +54,11 @@ Meteor.publish('points', function(projectId) {
         var user = Meteor.users.findOne(this.userId);
         try {
 
-            var response = HTTP.get(user.taiga.url + '/points?project=1', {
+            var response = HTTP.get(user.taiga.url + '/points?project=' + projectId, {
                 headers: {
                     'Authorization': 'Bearer ' + user.taiga.bearer
                 }
             });
-
-            console.log(response.data)
 
             _.each(response.data, function(item) {
                 self.added('points', item.id, item);

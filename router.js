@@ -6,7 +6,9 @@ Router.configure({
     if (!Meteor.user() && routeName != 'instance-create') {
       Router.go('login')
     }
-    Meteor.call('rooms-user-leave', this.params._id);
+    if (routeName != 'room' && routeName != 'room-play') {
+      Meteor.call('rooms-user-leave', this.params._id);
+    }
     this.next();
   }
 });

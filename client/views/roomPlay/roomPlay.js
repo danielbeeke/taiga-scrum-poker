@@ -15,10 +15,23 @@ Template.roomPlay.events({
     }
 });
 
+var cardsInited = false;
+
 var helpers = {
     cards: function () {
-        console.log(helpers.room().project)
         Meteor.subscribe('points', helpers.room().project)
+
+        if (Points.find().fetch().length && !cardsInited) {
+            console.log(Points.find().fetch().length)
+            console.log(Points.find().fetch())
+            cardsInited = new Dragdealer('card-carousel', {
+                steps: Points.find().fetch().length,
+                speed: 0.3,
+                loose: true,
+                requestAnimationFrame: true
+            });
+        }
+
         return Points.find();
     },
     room: function() {
@@ -42,10 +55,5 @@ var helpers = {
 Template.roomPlay.helpers(helpers);
 
 Template.roomPlay.onRendered(function () {
-    new Dragdealer('card-carousel', {
-        steps: 12,
-        speed: 0.3,
-        loose: true,
-        requestAnimationFrame: true
-    });
+
 })

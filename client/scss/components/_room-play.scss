@@ -4,11 +4,12 @@
   @include clearfix;
   height: 100vh;
   width: 100vw;
+  font-size: 0;
 
   .dragdealer {
     position: relative;
     height: 100%;
-    width: calc(100vw - 80px);
+    width: 280px;
     display: inline-block;
   }
 
