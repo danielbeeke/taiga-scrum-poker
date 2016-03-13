@@ -4,3 +4,4 @@ Estimations = new Mongo.Collection('estimations');
 UserStories = new Mongo.Collection('userstories');
 Points = new Mongo.Collection('points');
 Instances = new Mongo.Collection('instances');
+Members = new Mongo.Collection('members');

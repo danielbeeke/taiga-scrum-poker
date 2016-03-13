@@ -1,22 +1,50 @@
 <template name="roomsCreate">
-    <form id="rooms-create">
+    <form id="rooms-create" class="responsive-form-wizard">
 
-        <div class="form-item">
-            <input type="text" name="name" placeholder="Name">
-        </div>
-
-        <div class="form-item radios-as-select less-visually-important">
-            <div class="form-item-inner">
-                {{#each projects}}
-                    <div class="radio-option">
-                        <input type="radio" name="project" value="{{ id }}" id="project-{{ id }}" {{ first(@index) }}>
-                        <label class="label" for="project-{{ id }}">{{ name }}</label>
-                    </div>
-                {{/each}}
+        <div class="form-group {{ groupClasses 'name' }}">
+            <h3 class="group-header">Choose a name</h3>
+            <div class="form-item">
+                <input type="text" name="name" placeholder="Name" value="{{ formState 'rooms-create' 'name' }}">
             </div>
         </div>
 
-        <div class="form-item">
+        <div class="form-group {{ groupClasses 'project' }}">
+            <h3 class="group-header">Pick a project</h3>
+
+            {{#if formState 'rooms-create' 'name' }}
+                <div class="form-item">
+                    {{#each projects}}
+                    <div class="radio-option">
+                        <input type="radio" name="project" value="{{ id }}" id="project-{{ id }}" checked="{{ formState 'rooms-create' 'project' id }}">
+                        <label class="label" for="project-{{ id }}">{{ name }}</label>
+                    </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
+
+        <div class="form-group {{ groupClasses 'players' }}">
+            <h3 class="group-header">Select players</h3>
+
+            {{#if formState 'rooms-create' 'project' }}
+            <div class="form-item">
+                {{#each members}}
+                <div class="checkbox-option">
+                    <input type="checkbox" name="players" value="{{ id }}" id="players-{{ id }}" checked="{{ formState 'rooms-create' 'players' id }}">
+                    <label class="label" for="players-{{ id }}">{{ full_name_display }}</label>
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+
+        <div class="form-group {{ groupClasses 'issues' }}">
+            <h3 class="group-header">Select issues</h3>
+
+        </div>
+
+
+        <div class="form-actions">
             <a href="#" class="button primary arrow-right block">Create room <span class="arrow"></span></a>
             <input type="submit" class="hidden">
         </div>
