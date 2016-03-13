@@ -19,11 +19,11 @@ var cardsInited = false;
 
 var helpers = {
     cards: function () {
-        Meteor.subscribe('points', helpers.room().project)
+        Meteor.subscribe('points', helpers.room().project);
 
         if (Points.find().fetch().length && !cardsInited) {
-            console.log(Points.find().fetch().length)
-            console.log(Points.find().fetch())
+            console.log(Points.find().fetch().length);
+            console.log(Points.find().fetch());
             cardsInited = new Dragdealer('card-carousel', {
                 steps: Points.find().fetch().length,
                 speed: 0.3,
@@ -53,7 +53,3 @@ var helpers = {
 };
 
 Template.roomPlay.helpers(helpers);
-
-Template.roomPlay.onRendered(function () {
-
-})

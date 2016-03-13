@@ -21,3 +21,4 @@ http
 seba:minifiers-autoprefixer
 fourseven:scss
 chriswessels:hammer
+momentjs:moment

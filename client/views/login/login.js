@@ -1,6 +1,6 @@
 Template.login.events({
   "submit #login-form": function (event, template) {
-    event.preventDefault()
+    event.preventDefault();
 
     var login = {
       name: template.find('[name="name"]').value,

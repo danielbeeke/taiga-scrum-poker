@@ -19,7 +19,12 @@ Router.configure({
 });
 
 Router.route('/', function () {
-  Router.go('rooms')
+  if (!Meteor.user()) {
+    Router.go('login')
+  }
+  else {
+    Router.go('rooms')
+  }
 });
 
 Router.route('/login', {
@@ -69,6 +74,18 @@ Router.route('/rooms/:_id', {
     ];
   }
 });
+//
+//Router.route('/rooms/:_id/:issue', {
+//  name: 'room-issue',
+//  title: 'Room',
+//  waitOn: function() {
+//    return [
+//      Meteor.subscribe('rooms', this.params._id),
+//      Meteor.subscribe('estimations', this.params._id),
+//      Meteor.subscribe('users')
+//    ];
+//  }
+//});
 
 Router.route('/rooms/:_id/play', {
   name: 'room-play',

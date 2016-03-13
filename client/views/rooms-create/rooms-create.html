@@ -1,17 +1,25 @@
 <template name="roomsCreate">
     <form id="rooms-create">
 
-        <input type="text" name="name" placeholder="Name">
+        <div class="form-item">
+            <input type="text" name="name" placeholder="Name">
+        </div>
 
-        <select name="project">
-            <option value="_none" disabled selected hidden>Please select a project</option>
+        <div class="form-item radios-as-select less-visually-important">
+            <div class="form-item-inner">
+                {{#each projects}}
+                    <div class="radio-option">
+                        <input type="radio" name="project" value="{{ id }}" id="project-{{ id }}" {{ first(@index) }}>
+                        <label class="label" for="project-{{ id }}">{{ name }}</label>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
 
-            {{#each projects }}
-                <option value="{{ id }}">{{ name }}</option>
-            {{/each}}
-        </select>
-
-        <input type="submit" value="Submit">
+        <div class="form-item">
+            <a href="#" class="button primary arrow-right block">Create room <span class="arrow"></span></a>
+            <input type="submit" class="hidden">
+        </div>
 
     </form>
 </template>

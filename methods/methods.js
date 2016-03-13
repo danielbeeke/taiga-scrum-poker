@@ -18,9 +18,16 @@ Meteor.methods({
             $pull: { 'members': this.userId }
         });
     },
-    'rooms-set-current-userstory': function (roomId, userStoryId) {
+    'rooms-set-current-userstory': function (roomId) {
+        var userStoryId = UserStories.find({}, { limit: 1 }).fetch()[0].id;
+
         Rooms.update(roomId, {
             $set: { 'currentUserStoryId': userStoryId }
+        });
+    },
+    'rooms-remove-current-userstory': function (roomId) {
+        Rooms.update(roomId, {
+            $set: { 'currentUserStoryId': false }
         });
     },
     'estimation-create': function (estimationSelector, numberId) {
@@ -31,7 +38,6 @@ Meteor.methods({
         });
     },
     'instance-create': function (instanceUrl) {
-        console.log(instanceUrl)
         Instances.upsert({url: instanceUrl}, {
             $set: {'url': instanceUrl}
         });

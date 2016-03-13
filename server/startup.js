@@ -91,11 +91,13 @@ Meteor.publish('instances', function() {
 });
 
 Meteor.publish('estimations', function(roomId) {
-    if (roomId) {
+    if (roomId && this.userId) {
         return Estimations.find({ room: roomId });
     }
 });
 
 Meteor.publish("users", function () {
-    return Meteor.users.find();
+    if (this.userId) {
+        return Meteor.users.find();
+    }
 });
