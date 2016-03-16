@@ -101,6 +101,33 @@ Meteor.publish('members', function(projectId) {
 });
 
 
+Meteor.publish('issues', function(projectId) {
+    var self = this;
+
+    if (this.userId) {
+        var user = Meteor.users.findOne(this.userId);
+        try {
+
+            var response = HTTP.get(user.taiga.url + '/issues?project=' + projectId, {
+                headers: {
+                    'Authorization': 'Bearer ' + user.taiga.bearer
+                }
+            });
+
+            _.each(response.data, function(item) {
+                self.added('issues', item.id, item);
+            });
+
+            self.ready();
+
+        } catch(error) {
+            console.log(error);
+        }
+
+    }
+});
+
+
 Meteor.publish('rooms', function(roomId) {
     if (this.userId) {
         var user = Meteor.users.findOne(this.userId);

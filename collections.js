@@ -5,3 +5,4 @@ UserStories = new Mongo.Collection('userstories');
 Points = new Mongo.Collection('points');
 Instances = new Mongo.Collection('instances');
 Members = new Mongo.Collection('members');
+Issues = new Mongo.Collection('issues');

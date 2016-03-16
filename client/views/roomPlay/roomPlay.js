@@ -22,8 +22,6 @@ var helpers = {
         Meteor.subscribe('points', helpers.room().project);
 
         if (Points.find().fetch().length && !cardsInited) {
-            console.log(Points.find().fetch().length);
-            console.log(Points.find().fetch());
             cardsInited = new Dragdealer('card-carousel', {
                 steps: Points.find().fetch().length,
                 speed: 0.3,
@@ -33,6 +31,9 @@ var helpers = {
         }
 
         return Points.find();
+    },
+    cardsCount: function () {
+        return Points.find().fetch().length;
     },
     room: function() {
         return Rooms.findOne({ _id: Router.current().params._id })

@@ -30,6 +30,14 @@ Template.roomsCreate.helpers({
             }
         }
     },
+    issues: function () {
+        var formState = Session.get('forms.rooms-create');
+        if (formState && formState.project) {
+            Meteor.subscribe('issues', parseInt(formState.project));
+
+            return Issues.find()
+        }
+    },
     groupClasses: function (name) {
         //var formState = Session.get('forms.rooms-create');
 
