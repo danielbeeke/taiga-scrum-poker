@@ -1,16 +1,12 @@
 Template.roomsCreate.events({
-    //"submit #rooms-create": function (event, template) {
-    //    event.preventDefault();
-    //
-    //    var room = {
-    //        name: template.find('[name="name"]').value,
-    //        project: template.find('[name="project"]:checked').value
-    //    };
-    //
-    //    Meteor.call('rooms-create', room, function (error, roomId) {
-    //        Router.go('room', {_id: roomId });
-    //    })
-    //},
+    "submit #rooms-create": function (event, template) {
+        event.preventDefault();
+        var formState = Session.get('forms.rooms-create');
+        formState.project = parseInt(formState.project);
+        Meteor.call('rooms-create', formState, function (error, roomId) {
+            Router.go('room', {_id: roomId });
+        })
+    },
 });
 
 

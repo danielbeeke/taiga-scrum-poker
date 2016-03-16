@@ -4,6 +4,8 @@ Meteor.methods({
 
         var currentUser = Meteor.users.findOne({ _id: this.userId });
 
+        console.log(currentUser)
+
         room.instance = currentUser.taiga.url;
 
         return Rooms.insert(room)
