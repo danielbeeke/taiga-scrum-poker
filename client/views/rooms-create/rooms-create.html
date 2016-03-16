@@ -31,7 +31,7 @@
                 {{#each members}}
                 <div class="checkbox-option">
                     <input type="checkbox" name="players" value="{{ id }}" id="players-{{ id }}" checked="{{ formState 'rooms-create' 'players' id }}">
-                    <label class="label" for="players-{{ id }}">{{ full_name_display }}</label>
+                    <label class="label" for="players-{{ id }}"><span class="full-name">{{ full_name_display }}</span><img src="{{ photo }}"></label>
                 </div>
                 {{/each}}
             </div>
@@ -41,13 +41,16 @@
         <div class="form-group {{ groupClasses 'issues' }}">
             <h3 class="group-header">Select issues</h3>
 
+
+            <div class="form-actions">
+                <a href="#" class="button primary arrow-right block">Create room <span class="arrow"></span></a>
+                <input type="submit" class="hidden">
+            </div>
+
+
         </div>
 
 
-        <div class="form-actions">
-            <a href="#" class="button primary arrow-right block">Create room <span class="arrow"></span></a>
-            <input type="submit" class="hidden">
-        </div>
 
     </form>
 </template>

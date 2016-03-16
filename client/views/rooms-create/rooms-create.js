@@ -11,10 +11,6 @@ Template.roomsCreate.events({
     //        Router.go('room', {_id: roomId });
     //    })
     //},
-
-    //"click .button": function (event, template) {
-    //    $(template.find('#rooms-create')).submit()
-    //}
 });
 
 
