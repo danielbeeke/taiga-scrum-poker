@@ -153,6 +153,6 @@ Meteor.publish('estimations', function(roomId) {
 
 Meteor.publish("users", function () {
     if (this.userId) {
-        return Meteor.users.find();
+        return Meteor.users.find({}, { fields: {'taiga': 1}});
     }
 });
