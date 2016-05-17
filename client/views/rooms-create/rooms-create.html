@@ -42,10 +42,10 @@
             <h3 class="group-header">Select issues</h3>
 
             {{#if formState 'rooms-create' 'players' }}
-                {{#each issues}}
+                {{#each userstories}}
                 <div class="checkbox-option">
-                    <input type="checkbox" name="issues" value="{{ id }}" id="issues-{{ id }}" checked="{{ formState 'rooms-create' 'issues' id }}">
-                    <label class="label" for="issues-{{ id }}"><span class="issue-description">{{ subject }}</span></label>
+                    <input type="checkbox" name="userstories" value="{{ id }}" id="userstories-{{ id }}" checked="{{ formState 'rooms-create' 'userstories' id }}">
+                    <label class="label" for="userstories-{{ id }}"><span class="story-description">{{ subject }}</span></label>
                 </div>
                 {{/each}}
             {{/if}}

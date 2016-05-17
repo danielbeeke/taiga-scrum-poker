@@ -23,8 +23,6 @@ Accounts.registerLoginHandler('taiga', function(loginRequest) {
     // You don't need to do hashing in previous versions
     var hashStampedToken = Accounts._hashStampedToken(stampedToken);
 
-    console.log(loginRequest)
-
     Meteor.users.update(userId, {
       $set: {
         'taiga.bearer': result.data.auth_token,
@@ -38,7 +36,7 @@ Accounts.registerLoginHandler('taiga', function(loginRequest) {
     Instances.update({ url: loginRequest.url }, {
       $set: {
         'used': Date.now()
-      },
+      }
     });
 
     //sending token along with the userId

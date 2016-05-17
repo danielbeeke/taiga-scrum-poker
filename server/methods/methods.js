@@ -39,10 +39,13 @@ Meteor.methods({
             $set: {'numberId': numberId}
         });
     },
-    'instance-create': function (instanceUrl) {
-        Instances.upsert({url: instanceUrl}, {
-            $set: {'url': instanceUrl}
+    'instance-create': function (instanceData) {
+        Instances.upsert({ url: instanceData.url }, {
+            $set: { url: instanceData.url, name: instanceData.name }
         });
+    },
+    'instance-delete': function (instanceId) {
+        Instances.remove(instanceId);
     },
     'estimation-delete': function (estimationSelector) {
         estimationSelector.uid = this.userId;

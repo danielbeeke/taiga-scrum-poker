@@ -19,19 +19,24 @@
         {{#each instances}}
         <div class="radio-option">
           <input type="radio" name="taiga-url" value="{{ url }}" id="taiga-url-{{ _id }}" {{ first(@index) }}>
-          <label class="label" for="taiga-url-{{ _id }}">{{ url }}</label>
+          <label class="label" for="taiga-url-{{ _id }}"><img class="favicon" src="{{ favIcon }}"><span class="instance-name">{{ name }}</span><a class="delete-taiga-instance" href="#">Delete taiga instance</a></label>
         </div>
         {{/each}}
 
         <div class="radio-option">
-          <input type="radio" name="taiga-url" value="create" id="taiga-url-create">
+          {{#if instances }}
+            <input type="radio" name="taiga-url" value="create" id="taiga-url-create">
+          {{ else }}
+            <input type="radio" name="taiga-url" value="create" id="taiga-url-create" checked>
+          {{/if}}
           <label class="label" for="taiga-url-create" id="create-taige-url">Add a new taiga instance</label>
+
         </div>
       </div>
     </div>
 
     <div class="form-item">
-      <a href="#" class="button primary arrow-right block">Login <span class="arrow"></span></a>
+      <button class="button primary arrow-right block">Login <span class="arrow"></span></button>
       <input type="submit" class="hidden">
     </div>
 

@@ -26,33 +26,15 @@ Template.roomsCreate.helpers({
             }
         }
     },
-    issues: function () {
+    userstories: function () {
         var formState = Session.get('forms.rooms-create');
         if (formState && formState.project) {
-            Meteor.subscribe('issues', parseInt(formState.project));
+            Meteor.subscribe('userstories', parseInt(formState.project));
 
-            return Issues.find()
+            return UserStories.find()
         }
     },
     groupClasses: function (name) {
-        //var formState = Session.get('forms.rooms-create');
 
-        //switch (name) {
-        //    case 'name':
-        //        if (formState && formState.name && formState.name != '') {
-        //            return 'done enabled'
-        //        }
-        //        else {
-        //            return 'enabled'
-        //        }
-        //
-        //        break;
-        //    case 'project':
-        //        break;
-        //    case 'issues':
-        //        break;
-        //    case 'players':
-        //        break;
-        //}
-    },
+    }
 });

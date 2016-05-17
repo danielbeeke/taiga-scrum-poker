@@ -1,8 +1,14 @@
 Template.instanceCreate.events({
-    "click .button": function (event, template) {
-        var instanceUrl = template.find('[name="instance-url"]').value;
+    "submit #instance-create-form": function (event, template) {
+        event.preventDefault();
 
-        Meteor.call('instance-create', instanceUrl, function (error) {
+        var instanceUrl = template.find('[name="instance-url"]').value;
+        var instanceName = template.find('[name="instance-name"]').value;
+
+        Meteor.call('instance-create', {
+            url: instanceUrl,
+            name: instanceName
+        }, function (error) {
             Router.go('login');
         })
     }

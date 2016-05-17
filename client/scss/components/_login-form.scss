@@ -4,31 +4,62 @@
   margin: 0 auto;
   padding: $padding;
 
-  .logo {
-    padding-bottom: 70%;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: none;
-    background-size: contain;
-  }
-
-  .scheme, .port {
-    max-width: 0;
+  .instance-name,
+  .favicon {
     display: inline-block;
-    transition: max-width $speed $easing;
-    overflow: hidden;
     vertical-align: middle;
-    margin-top: -4px;
   }
 
-  .label-inner {
+  .favicon {
+    height: 24px;
+    margin-top: -6px;
+    margin-right: 15px;
+  }
+
+  .label {
     vertical-align: middle;
-    margin-top: -4px;
   }
 
   .radios-as-select:hover {
-    .scheme, .port {
-      max-width: 200px;
+    .delete-taiga-instance {
+      opacity: 1;
+    }
+  }
+
+  .delete-taiga-instance {
+    text-indent: -9999px;
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    width: 32px;
+    height: 32px;
+    top: 12px;
+    opacity: 0;
+
+    &:after, &:before {
+      display: block;
+      content: '';
+      width: 2px;
+      height: 16px;
+      background: $grey-light;
+      position: absolute;
+      top: 8px;
+      left: 14px;
+      transition: background $speed $easing, opacity $speed $easing;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+
+    &:hover {
+      &:after, &:before {
+        background: $green-light;
+      }
     }
   }
 }
