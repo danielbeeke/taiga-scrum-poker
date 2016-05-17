@@ -1,6 +1,16 @@
 .responsive-form-wizard {
-
   .form-group {
+    height: calc(100vh - #{$group-header-height});
+
+    .group-header {
+      margin: 0;
+    }
+
+    &.active {
+      .group-header {
+        color: green;
+      }
+    }
   }
 
   .form-actions {

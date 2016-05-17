@@ -35,6 +35,9 @@ Template.tablesCreate.helpers({
         }
     },
     groupClasses: function (name) {
-
+        var formState = Session.get('forms.tables-create');
+        if (formState && formState[name]) {
+            return 'active';
+        }
     }
 });

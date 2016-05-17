@@ -1,14 +1,14 @@
 <template name="tablesCreate">
     <form id="tables-create" class="responsive-form-wizard">
 
-        <div class="form-group {{ groupClasses 'name' }}">
+        <div class="form-group active">
             <h3 class="group-header">Choose a name</h3>
             <div class="form-item">
                 <input type="text" name="name" placeholder="Name" value="{{ formState 'tables-create' 'name' }}">
             </div>
         </div>
 
-        <div class="form-group {{ groupClasses 'project' }}">
+        <div class="form-group {{ groupClasses 'name' }}">
             <h3 class="group-header">Pick a project</h3>
 
             {{#if formState 'tables-create' 'name' }}
@@ -23,7 +23,7 @@
             {{/if}}
         </div>
 
-        <div class="form-group {{ groupClasses 'players' }}">
+        <div class="form-group {{ groupClasses 'project' }}">
             <h3 class="group-header">Select players</h3>
 
             {{#if formState 'tables-create' 'project' }}
@@ -38,7 +38,7 @@
             {{/if}}
         </div>
 
-        <div class="form-group {{ groupClasses 'issues' }}">
+        <div class="form-group {{ groupClasses 'players' }}">
             <h3 class="group-header">Select issues</h3>
 
             {{#if formState 'tables-create' 'players' }}

@@ -35,6 +35,7 @@
     height: 32px;
     top: 12px;
     opacity: 0;
+    transition: background $speed $easing, opacity $speed $easing;
 
     &:after, &:before {
       display: block;
