@@ -6,3 +6,7 @@ Points = new Mongo.Collection('points');
 Instances = new Mongo.Collection('instances');
 Members = new Mongo.Collection('members');
 Issues = new Mongo.Collection('issues');
+
+if (Meteor.isServer && !Instances.find()) {
+    Instances.insert({ url: 'https://api.taiga.io/api/v1', name: 'Taiga' })
+}

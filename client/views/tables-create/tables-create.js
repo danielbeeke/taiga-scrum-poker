@@ -37,7 +37,28 @@ Template.tablesCreate.helpers({
     groupClasses: function (name) {
         var formState = Session.get('forms.tables-create');
         if (formState && formState[name]) {
-            return 'active';
+            return 'blabla';
         }
     }
 });
+
+Template.tablesCreate.rendered = function () {
+    var that = this;
+
+    this.autorun(function () {
+        var formState = Session.get('forms.tables-create');
+
+        if (typeof that.$('#tables-create').fullpage.reBuild == 'function') {
+            that.$('#tables-create').fullpage.reBuild();
+        }
+
+        setTimeout(function () {
+            that.$('#tables-create').fullpage({
+                sectionSelector: '.form-group',
+                verticalCentered: false,
+                scrollOverflow: true
+            });
+        }, 40)
+
+    });
+}

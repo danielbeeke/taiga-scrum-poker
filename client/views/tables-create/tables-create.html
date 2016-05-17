@@ -1,7 +1,7 @@
 <template name="tablesCreate">
     <form id="tables-create" class="responsive-form-wizard">
 
-        <div class="form-group active">
+        <div class="form-group">
             <h3 class="group-header">Choose a name</h3>
             <div class="form-item">
                 <input type="text" name="name" placeholder="Name" value="{{ formState 'tables-create' 'name' }}">
@@ -52,8 +52,7 @@
         </div>
 
         <div class="form-actions">
-            <a href="#" class="button primary arrow-right block">Create table <span class="arrow"></span></a>
-            <input type="submit" class="hidden">
+            <button name="submit" class="button primary arrow-right block">Create table <span class="arrow"></span></button>
         </div>
     </form>
 </template>

@@ -41,7 +41,7 @@ Meteor.methods({
     },
     'instance-create': function (instanceData) {
         Instances.upsert({ url: instanceData.url }, {
-            $set: { url: instanceData.url, name: instanceData.name }
+            $set: { url: instanceData.url, name: instanceData.name, used: Date.now() }
         });
     },
     'instance-delete': function (instanceId) {

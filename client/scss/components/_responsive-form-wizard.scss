@@ -1,13 +1,18 @@
 .responsive-form-wizard {
   .form-group {
-    height: calc(100vh - #{$group-header-height});
+    padding: 20px;
+    position: relative;
 
+    .group-footer,
     .group-header {
       margin: 0;
+      padding-bottom: 20px;
     }
 
-    &.active {
-      .group-header {
+    .group-footer {
+      position: absolute;
+      bottom: 0;
+      &.active {
         color: green;
       }
     }
