@@ -1,34 +1,34 @@
 Meteor.methods({
-    'rooms-create': function (room) {
-        room.uid = this.userId;
+    'tables-create': function (table) {
+        table.uid = this.userId;
 
         var currentUser = Meteor.users.findOne({ _id: this.userId });
 
         console.log(currentUser)
 
-        room.instance = currentUser.taiga.url;
+        table.instance = currentUser.taiga.url;
 
-        return Rooms.insert(room)
+        return Tables.insert(table)
     },
-    'rooms-user-visit': function (roomId) {
-        Rooms.update(roomId, {
+    'tables-user-visit': function (tableId) {
+        Tables.update(tableId, {
             $addToSet: { 'members': this.userId }
         });
     },
-    'rooms-user-leave': function () {
-        Rooms.update({ 'members': this.userId }, {
+    'tables-user-leave': function () {
+        Tables.update({ 'members': this.userId }, {
             $pull: { 'members': this.userId }
         });
     },
-    'rooms-set-current-userstory': function (roomId) {
+    'tables-set-current-userstory': function (tableId) {
         var userStoryId = UserStories.find({}, { limit: 1 }).fetch()[0].id;
 
-        Rooms.update(roomId, {
+        Tables.update(tableId, {
             $set: { 'currentUserStoryId': userStoryId }
         });
     },
-    'rooms-remove-current-userstory': function (roomId) {
-        Rooms.update(roomId, {
+    'tables-remove-current-userstory': function (tableId) {
+        Tables.update(tableId, {
             $set: { 'currentUserStoryId': false }
         });
     },

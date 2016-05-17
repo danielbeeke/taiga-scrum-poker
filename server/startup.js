@@ -128,15 +128,15 @@ Meteor.publish('issues', function(projectId) {
 });
 
 
-Meteor.publish('rooms', function(roomId) {
+Meteor.publish('tables', function(tableId) {
     if (this.userId) {
         var user = Meteor.users.findOne(this.userId);
 
-        if (roomId) {
-            return Rooms.find({ _id: roomId, instance: user.taiga.url });
+        if (tableId) {
+            return Tables.find({ _id: tableId, instance: user.taiga.url });
         }
         else {
-            return Rooms.find({instance: user.taiga.url});
+            return Tables.find({instance: user.taiga.url});
         }
     }
 });
@@ -145,9 +145,9 @@ Meteor.publish('instances', function() {
     return Instances.find();
 });
 
-Meteor.publish('estimations', function(roomId) {
-    if (roomId && this.userId) {
-        return Estimations.find({ room: roomId });
+Meteor.publish('estimations', function(tableId) {
+    if (tableId && this.userId) {
+        return Estimations.find({ table: tableId });
     }
 });
 

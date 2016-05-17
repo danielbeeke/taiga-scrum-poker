@@ -1,11 +1,11 @@
-<template name="rooms">
-    <a class="button arrow-right" href="{{ pathFor 'rooms-create' }}">Create a room <span class="arrow"></span></a>
+<template name="tables">
+    <a class="button arrow-right" href="{{ pathFor 'tables-create' }}">Create a table <span class="arrow"></span></a>
     <a class="button arrow-right" href="{{ pathFor 'logout' }}">Logout <span class="arrow"></span></a>
 
     <ul>
-        {{#each rooms }}
+        {{#each tables }}
             <li>
-                {{> roomTeaser}}
+                {{> tableTeaser}}
             </li>
         {{/each}}
     </ul>

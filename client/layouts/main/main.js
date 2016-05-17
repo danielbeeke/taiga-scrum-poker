@@ -27,14 +27,6 @@ Template.main.events({
     },
     "click .button": function (event, template) {
         template.$(event.target).parents('form').submit()
-    },
-    "click .radios-as-select .label": function (event, template) {
-        template.$(event.target).parents('.radios-as-select').addClass('just-clicked').one('mouseout', function () {
-            var that = this;
-            setTimeout(function () {
-                $(that).removeClass('just-clicked')
-            }, 1000)
-        })
     }
 });
 

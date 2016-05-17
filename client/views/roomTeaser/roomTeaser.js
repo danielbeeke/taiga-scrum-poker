@@ -1,4 +1,4 @@
-Template.roomTeaser.helpers({
+Template.tableTeaser.helpers({
     members: function () {
         return Meteor.users.find({ _id: { $in: this.members } });
     },

@@ -13,7 +13,7 @@ Template.login.events({
       userCallback: function (error) {
         if (!error) {
           Session.set('errorMessage', '');
-          Router.go('rooms')
+          Router.go('tables')
         }
         else {
           Session.set('errorMessage', 'Something went wrong, please try again.');
@@ -30,6 +30,14 @@ Template.login.events({
   "click .delete-taiga-instance": function (event, template) {
     event.preventDefault();
     Meteor.call('instance-delete', this._id);
+  },
+  "click .radios-as-select .label": function (event, template) {
+    template.$(event.target).parents('.radios-as-select').addClass('just-clicked').one('mouseout', function () {
+      var that = this;
+      setTimeout(function () {
+        $(that).removeClass('just-clicked')
+      }, 1000)
+    })
   }
 });
 

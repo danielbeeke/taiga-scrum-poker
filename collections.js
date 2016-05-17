@@ -1,5 +1,5 @@
 Projects = new Mongo.Collection('projects');
-Rooms = new Mongo.Collection('rooms');
+Tables = new Mongo.Collection('tables');
 Estimations = new Mongo.Collection('estimations');
 UserStories = new Mongo.Collection('userstories');
 Points = new Mongo.Collection('points');

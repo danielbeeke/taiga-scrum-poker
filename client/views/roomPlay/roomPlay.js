@@ -1,9 +1,9 @@
-Template.roomPlay.events({
+Template.tablePlay.events({
     "click .card": function (event, template) {
         var numberId = Blaze.getData(event.currentTarget).id;
         var estimationSelector = {
-            room: helpers.room()._id,
-            userStoryId: helpers.room().currentUserStoryId
+            table: helpers.table()._id,
+            userStoryId: helpers.table().currentUserStoryId
         };
 
         if (helpers.memberHasChosen() && helpers.memberHasChosen().numberId == numberId) {
@@ -19,7 +19,7 @@ var cardsInited = false;
 
 var helpers = {
     cards: function () {
-        Meteor.subscribe('points', helpers.room().project);
+        Meteor.subscribe('points', helpers.table().project);
 
         if (Points.find().fetch().length && !cardsInited) {
             cardsInited = new Dragdealer('card-carousel', {
@@ -35,14 +35,14 @@ var helpers = {
     cardsCount: function () {
         return Points.find().fetch().length;
     },
-    room: function() {
-        return Rooms.findOne({ _id: Router.current().params._id })
+    table: function() {
+        return Tables.findOne({ _id: Router.current().params._id })
     },
     memberHasChosen: function () {
         return Estimations.findOne({
             uid: Meteor.user()._id,
-            userStoryId: helpers.room().currentUserStoryId,
-            room: helpers.room()._id
+            userStoryId: helpers.table().currentUserStoryId,
+            table: helpers.table()._id
         });
     },
     activeCard: function () {
@@ -53,4 +53,4 @@ var helpers = {
     }
 };
 
-Template.roomPlay.helpers(helpers);
+Template.tablePlay.helpers(helpers);

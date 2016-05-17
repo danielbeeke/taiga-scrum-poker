@@ -1,5 +1,5 @@
-Template.rooms.helpers({
-   rooms: function () {
-      return Rooms.find({})
+Template.tables.helpers({
+   tables: function () {
+      return Tables.find({})
    }
 });

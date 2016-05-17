@@ -1,47 +1,47 @@
 var helpers = {
-    room: function() {
-        return Rooms.findOne({ _id: Router.current().params._id })
+    table: function() {
+        return Tables.findOne({ _id: Router.current().params._id })
     },
     members: function () {
-        var room = helpers.room();
+        var table = helpers.table();
 
-        if (room.members && room.members.length) {
-            return Meteor.users.find({ _id: { $in: room.members } });
+        if (table.members && table.members.length) {
+            return Meteor.users.find({ _id: { $in: table.members } });
         }
     },
     issues: function () {
-        Meteor.subscribe('userstories', helpers.room().project);
+        Meteor.subscribe('userstories', helpers.table().project);
 
         return UserStories.find();
     },
     currentUserStory: function () {
-        Meteor.subscribe('userstories', helpers.room().project);
+        Meteor.subscribe('userstories', helpers.table().project);
 
-        if (helpers.room().currentUserStoryId) {
-            return UserStories.findOne({ id: helpers.room().currentUserStoryId });
+        if (helpers.table().currentUserStoryId) {
+            return UserStories.findOne({ id: helpers.table().currentUserStoryId });
         }
     },
     allMembersHaveChosen: function () {
         var allMembersHaveChosen = Estimations.find({
-                userStoryId: helpers.room().currentUserStoryId,
-                room: helpers.room()._id
-            }).fetch().length == helpers.room().members.length
+                userStoryId: helpers.table().currentUserStoryId,
+                table: helpers.table()._id
+            }).fetch().length == helpers.table().members.length
 
         if (allMembersHaveChosen && helpers.currentUserStory()) {
             var oldUserStoryId = helpers.currentUserStory()._id;
-            //Meteor.call('rooms-remove-current-userstory', helpers.room()._id);
-            //Router.go('', { _id: oldUserStoryId, room: helpers.room()._id })
+            //Meteor.call('tables-remove-current-userstory', helpers.table()._id);
+            //Router.go('', { _id: oldUserStoryId, table: helpers.table()._id })
         }
 
         return allMembersHaveChosen
     },
     memberHasChosen: function () {
-        Meteor.subscribe('points', helpers.room().project)
+        Meteor.subscribe('points', helpers.table().project)
 
         var memberEstimation = Estimations.findOne({
             uid: this._id,
-            userStoryId: helpers.room().currentUserStoryId,
-            room: helpers.room()._id
+            userStoryId: helpers.table().currentUserStoryId,
+            table: helpers.table()._id
         });
 
         var point = Points.findOne({ _id: memberEstimation.numberId });
@@ -50,4 +50,4 @@ var helpers = {
     }
 };
 
-Template.room.helpers(helpers);
+Template.table.helpers(helpers);

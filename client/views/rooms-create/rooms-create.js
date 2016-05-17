@@ -1,21 +1,21 @@
-Template.roomsCreate.events({
-    "submit #rooms-create": function (event, template) {
+Template.tablesCreate.events({
+    "submit #tables-create": function (event, template) {
         event.preventDefault();
-        var formState = Session.get('forms.rooms-create');
+        var formState = Session.get('forms.tables-create');
         formState.project = parseInt(formState.project);
-        Meteor.call('rooms-create', formState, function (error, roomId) {
-            Router.go('room', {_id: roomId });
+        Meteor.call('tables-create', formState, function (error, tableId) {
+            Router.go('table', {_id: tableId });
         })
     },
 });
 
 
-Template.roomsCreate.helpers({
+Template.tablesCreate.helpers({
     projects: function () {
         return Projects.find()
     },
     members: function () {
-        var formState = Session.get('forms.rooms-create');
+        var formState = Session.get('forms.tables-create');
         if (formState && formState.project) {
             Meteor.subscribe('members', parseInt(formState.project));
 
@@ -27,7 +27,7 @@ Template.roomsCreate.helpers({
         }
     },
     userstories: function () {
-        var formState = Session.get('forms.rooms-create');
+        var formState = Session.get('forms.tables-create');
         if (formState && formState.project) {
             Meteor.subscribe('userstories', parseInt(formState.project));
 

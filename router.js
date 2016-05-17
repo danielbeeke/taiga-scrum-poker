@@ -7,12 +7,12 @@ Router.configure({
       Router.go('login')
     }
 
-    if (routeName == 'room-play') {
-      Meteor.call('rooms-user-visit', this.params._id);
+    if (routeName == 'table-play') {
+      Meteor.call('tables-user-visit', this.params._id);
     }
 
-    if (routeName != 'room' && routeName != 'room-play') {
-      Meteor.call('rooms-user-leave', this.params._id);
+    if (routeName != 'table' && routeName != 'table-play') {
+      Meteor.call('tables-user-leave', this.params._id);
     }
     this.next();
   }
@@ -23,7 +23,7 @@ Router.route('/', function () {
     Router.go('login')
   }
   else {
-    Router.go('rooms')
+    Router.go('tables')
   }
 });
 
@@ -43,57 +43,57 @@ Router.route('/logout', function () {
   Router.go('login');
 });
 
-Router.route('/rooms', {
-  name: 'rooms',
-  title: 'Rooms',
+Router.route('/tables', {
+  name: 'tables',
+  title: 'Tables',
   waitOn: function() {
     return [
-      Meteor.subscribe('rooms'),
+      Meteor.subscribe('tables'),
       Meteor.subscribe('users'),
       Meteor.subscribe('projects')
     ];
   }
 });
 
-Router.route('/rooms/create', {
-  name: 'rooms-create',
-  title: 'Create a room',
+Router.route('/tables/create', {
+  name: 'tables-create',
+  title: 'Create a table',
   waitOn: function() {
     return Meteor.subscribe('projects');
   }
 });
 
-Router.route('/rooms/:_id', {
-  name: 'room',
-  title: 'Room',
+Router.route('/tables/:_id', {
+  name: 'table',
+  title: 'Table',
   waitOn: function() {
     return [
-      Meteor.subscribe('rooms', this.params._id),
+      Meteor.subscribe('tables', this.params._id),
       Meteor.subscribe('estimations', this.params._id),
       Meteor.subscribe('users')
     ];
   }
 });
 //
-//Router.route('/rooms/:_id/:issue', {
-//  name: 'room-issue',
-//  title: 'Room',
+//Router.route('/tables/:_id/:issue', {
+//  name: 'table-issue',
+//  title: 'Table',
 //  waitOn: function() {
 //    return [
-//      Meteor.subscribe('rooms', this.params._id),
+//      Meteor.subscribe('tables', this.params._id),
 //      Meteor.subscribe('estimations', this.params._id),
 //      Meteor.subscribe('users')
 //    ];
 //  }
 //});
 
-Router.route('/rooms/:_id/play', {
-  name: 'room-play',
+Router.route('/tables/:_id/play', {
+  name: 'table-play',
   layoutTemplate: false,
-  title: 'Room',
+  title: 'Table',
   waitOn: function() {
     return [
-      Meteor.subscribe('rooms', this.params._id),
+      Meteor.subscribe('tables', this.params._id),
       Meteor.subscribe('estimations', this.params._id),
       Meteor.subscribe('users')
     ];
