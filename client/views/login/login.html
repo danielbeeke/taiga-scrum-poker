@@ -20,7 +20,7 @@
         <div class="radio-option">
           <input type="radio" name="taiga-url" value="{{ url }}" id="taiga-url-{{ _id }}" {{ first(@index) }}>
           <label class="label" for="taiga-url-{{ _id }}"><img class="favicon" src="{{ favIcon }}"><span class="instance-name">{{ name }}</span>
-            {{#unless name = 'https://api.taiga.io/api/v1' }}<a class="delete-taiga-instance" href="#">Delete taiga instance</a>{{/unless}}
+            {{#unless compare url 'https://api.taiga.io/api/v1' }}<a class="delete-taiga-instance" href="#">Delete taiga instance</a>{{/unless}}
           </label>
         </div>
         {{/each}}
