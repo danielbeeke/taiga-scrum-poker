@@ -1,58 +1,84 @@
 <template name="tablesCreate">
     <form id="tables-create" class="responsive-form-wizard">
 
-        <div class="form-group allowed">
-            <h3 class="group-header">Choose a name</h3>
-            <div class="form-item">
-                <input type="text" name="name" placeholder="Name" value="{{ formState 'tables-create' 'name' }}">
+        <h3 class="group-header allowed">Choose a name</h3>
+
+        <div class="form-group">
+            <div class="group-inner">
+                <div class="form-item">
+                    <input type="text" name="name" placeholder="Name" value="{{ formState 'tables-create' 'name' }}">
+                </div>
             </div>
         </div>
 
-        <div class="form-group {{ groupClasses 'name' }}">
+        {{#unless formState 'tables-create' 'name' }}
             <h3 class="group-header">Pick a project</h3>
+        {{/unless}}
 
-            {{#if formState 'tables-create' 'name' }}
-                <div class="form-item">
-                    {{#each projects}}
-                    <div class="radio-option">
-                        <input type="radio" name="project" value="{{ id }}" id="project-{{ id }}" checked="{{ formState 'tables-create' 'project' id }}">
-                        <label class="label" for="project-{{ id }}">{{ name }}</label>
+        {{#if formState 'tables-create' 'name' }}
+            <h3 class="group-header allowed">Pick a project</h3>
+
+            <div class="form-group {{ groupClasses 'name' }}">
+                <div class="group-inner">
+                        <div class="form-item">
+                            {{#each projects}}
+                            <div class="radio-option">
+                                <input type="radio" name="project" value="{{ id }}" id="project-{{ id }}" checked="{{ formState 'tables-create' 'project' id }}">
+                                <label class="label" for="project-{{ id }}">{{ name }}</label>
+                            </div>
+                            {{/each}}
+                        </div>
                     </div>
-                    {{/each}}
-                </div>
-            {{/if}}
-        </div>
+            </div>
 
-        <div class="form-group {{ groupClasses 'project' }}">
-            <h3 class="group-header">Select players</h3>
+            {{#unless formState 'tables-create' 'project' }}
+                <h3 class="group-header">Select players</h3>
+            {{/unless}}
 
             {{#if formState 'tables-create' 'project' }}
-            <div class="form-item">
-                {{#each members}}
-                <div class="checkbox-option">
-                    <input type="checkbox" name="players" value="{{ id }}" id="players-{{ id }}" checked="{{ formState 'tables-create' 'players' id }}">
-                    <label class="label" for="players-{{ id }}"><span class="full-name">{{ full_name_display }}</span><img src="{{ photo }}"></label>
+                <h3 class="group-header allowed">Select players</h3>
+
+                <div class="form-group">
+                    <div class="group-inner">
+                        <div class="form-item">
+                            {{#each members}}
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="players" value="{{ id }}" id="players-{{ id }}" checked="{{ formState 'tables-create' 'players' id }}">
+                                <label class="label" for="players-{{ id }}"><span class="full-name">{{ full_name_display }}</span><img src="{{ photo }}"></label>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
                 </div>
-                {{/each}}
-            </div>
+
+                {{#unless formState 'tables-create' 'players' }}
+                    <h3 class="group-header">Select issues</h3>
+                {{/unless}}
+
+                {{#if formState 'tables-create' 'players' }}
+                    <h3 class="group-header allowed">Select issues</h3>
+
+                    <div class="form-group {{ groupClasses 'players' }}">
+
+                        <div class="group-inner">
+                            {{#each userstories}}
+                            <div class="checkbox-option">
+                                <input type="checkbox" name="userstories" value="{{ id }}" id="userstories-{{ id }}" checked="{{ formState 'tables-create' 'userstories' id }}">
+                                <label class="label" for="userstories-{{ id }}"><span class="story-description">{{ subject }}</span></label>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+
+                    {{#unless formState 'tables-create' 'userstories' }}
+                        <h3 class="group-header">Save table</h3>
+                    {{/unless}}
+
+                    {{#if formState 'tables-create' 'userstories' }}
+                        <h3 class="group-header allowed">Save table</h3>
+                    {{/if}}
+                {{/if}}
             {{/if}}
-        </div>
-
-        <div class="form-group {{ groupClasses 'players' }}">
-            <h3 class="group-header">Select issues</h3>
-
-            {{#if formState 'tables-create' 'players' }}
-                {{#each userstories}}
-                <div class="checkbox-option">
-                    <input type="checkbox" name="userstories" value="{{ id }}" id="userstories-{{ id }}" checked="{{ formState 'tables-create' 'userstories' id }}">
-                    <label class="label" for="userstories-{{ id }}"><span class="story-description">{{ subject }}</span></label>
-                </div>
-                {{/each}}
-            {{/if}}
-        </div>
-
-        <div class="form-actions">
-            <button name="submit" class="button primary arrow-right block">Create table <span class="arrow"></span></button>
-        </div>
+        {{/if}}
     </form>
 </template>

@@ -2,17 +2,16 @@
   .form-group {
     padding: 20px;
     position: relative;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 128px);
+  }
 
-    .group-header {
-      margin: 0;
-      padding-bottom: 20px;
-    }
+  .group-header {
+    margin: 0;
+    cursor: pointer;
+    padding: 20px;
 
     &.allowed {
-      .group-header {
-        color: green;
-      }
+      color: green;
     }
   }
 

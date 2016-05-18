@@ -8,9 +8,9 @@ Template.tablesCreate.events({
         })
     },
     "click .group-header": function (event, template) {
-        $('html, body').animate({
-            scrollTop: $(event.target).parent().offset().top + 'px'
-        }, 600);
+        //$('html, body').animate({
+        //    scrollTop: $(event.target).parent().offset().top + 'px'
+        //}, 600);
     }
 });
 
@@ -48,6 +48,5 @@ Template.tablesCreate.helpers({
 });
 
 Template.tablesCreate.rendered = function () {
-    var that = this;
 
 }
