@@ -2,17 +2,15 @@
   .form-group {
     padding: 20px;
     position: relative;
+    height: calc(100vh - 60px);
 
-    .group-footer,
     .group-header {
       margin: 0;
       padding-bottom: 20px;
     }
 
-    .group-footer {
-      position: absolute;
-      bottom: 0;
-      &.active {
+    &.allowed {
+      .group-header {
         color: green;
       }
     }

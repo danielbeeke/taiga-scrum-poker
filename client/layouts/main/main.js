@@ -1,6 +1,6 @@
 Template.main.events({
     // Global two way binding trick for Meteor.
-    "change input": function (event, template) {
+    "change input, keyup input": function (event, template) {
         var formState = {};
         var formId = template.$(event.target).parents('form').attr('id');
         var formStateArray = template.$('#' + formId).serializeArray();
