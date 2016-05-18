@@ -4,10 +4,8 @@
         <h3 class="group-header allowed">Choose a name</h3>
 
         <div class="form-group">
-            <div class="group-inner">
-                <div class="form-item">
-                    <input type="text" name="name" placeholder="Name" value="{{ formState 'tables-create' 'name' }}">
-                </div>
+            <div class="form-item">
+                <input type="text" name="name" placeholder="Name" value="{{ formState 'tables-create' 'name' }}">
             </div>
         </div>
 
@@ -19,16 +17,14 @@
             <h3 class="group-header allowed">Pick a project</h3>
 
             <div class="form-group {{ groupClasses 'name' }}">
-                <div class="group-inner">
-                        <div class="form-item">
-                            {{#each projects}}
-                            <div class="radio-option">
-                                <input type="radio" name="project" value="{{ id }}" id="project-{{ id }}" checked="{{ formState 'tables-create' 'project' id }}">
-                                <label class="label" for="project-{{ id }}">{{ name }}</label>
-                            </div>
-                            {{/each}}
-                        </div>
+                <div class="form-item">
+                    {{#each projects}}
+                    <div class="radio-option">
+                        <input type="radio" name="project" value="{{ id }}" id="project-{{ id }}" checked="{{ formState 'tables-create' 'project' id }}">
+                        <label class="label" for="project-{{ id }}">{{ name }}</label>
                     </div>
+                    {{/each}}
+                </div>
             </div>
 
             {{#unless formState 'tables-create' 'project' }}
@@ -39,15 +35,13 @@
                 <h3 class="group-header allowed">Select players</h3>
 
                 <div class="form-group">
-                    <div class="group-inner">
-                        <div class="form-item">
-                            {{#each members}}
-                            <div class="checkbox-option">
-                                <input type="checkbox" name="players" value="{{ id }}" id="players-{{ id }}" checked="{{ formState 'tables-create' 'players' id }}">
-                                <label class="label" for="players-{{ id }}"><span class="full-name">{{ full_name_display }}</span><img src="{{ photo }}"></label>
-                            </div>
-                            {{/each}}
+                    <div class="form-item">
+                        {{#each members}}
+                        <div class="checkbox-option">
+                            <input type="checkbox" name="players" value="{{ id }}" id="players-{{ id }}" checked="{{ formState 'tables-create' 'players' id }}">
+                            <label class="label" for="players-{{ id }}"><span class="full-name">{{ full_name_display }}</span><img src="{{ photo }}"></label>
                         </div>
+                        {{/each}}
                     </div>
                 </div>
 

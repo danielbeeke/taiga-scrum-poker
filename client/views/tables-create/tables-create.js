@@ -8,9 +8,9 @@ Template.tablesCreate.events({
         })
     },
     "click .group-header": function (event, template) {
-        //$('html, body').animate({
-        //    scrollTop: $(event.target).parent().offset().top + 'px'
-        //}, 600);
+        $('html, body').animate({
+            scrollTop: $(event.target).offset().top + 'px'
+        }, 600);
     }
 });
 
@@ -48,5 +48,15 @@ Template.tablesCreate.helpers({
 });
 
 Template.tablesCreate.rendered = function () {
-
+    $(window).on('scroll', function () {
+        $('.form-group').each(function (delta, group) {
+            var header = $(group).prev('.group-header');
+            if ($(group).offset().top - $(header).outerHeight() < $(window).scrollTop()) {
+                $(header).addClass('sticky');
+            }
+            else if ($(group).offset().top > $(window).scrollTop()) {
+                $(header).removeClass('sticky');
+            }
+        })
+    })
 }
