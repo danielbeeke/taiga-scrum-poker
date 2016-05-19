@@ -8,8 +8,10 @@ Template.tablesCreate.events({
         })
     },
     "click .group-header": function (event, template) {
+        var delta = $('.group-header').index(event.target);
+
         $('html, body').animate({
-            scrollTop: $(event.target).offset().top + 'px'
+            scrollTop: $(event.target).next('.form-group').offset().top - $('.group-header:first').outerHeight() - (delta * 35) + 'px'
         }, 600);
     }
 });
@@ -51,10 +53,12 @@ Template.tablesCreate.rendered = function () {
     $(window).on('scroll', function () {
         $('.form-group').each(function (delta, group) {
             var header = $(group).prev('.group-header');
-            if ($(group).offset().top - $(header).outerHeight() < $(window).scrollTop()) {
+            var deltaAdjustment = delta * 35;
+
+            if ($(group).offset().top - $(header).outerHeight() - deltaAdjustment < $(window).scrollTop()) {
                 $(header).addClass('sticky');
             }
-            else if ($(group).offset().top > $(window).scrollTop()) {
+            else if ($(group).offset().top + deltaAdjustment > $(window).scrollTop()) {
                 $(header).removeClass('sticky');
             }
         })

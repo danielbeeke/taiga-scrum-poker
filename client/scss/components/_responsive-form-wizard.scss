@@ -3,10 +3,15 @@
     margin: 0 20px;
     padding: 20px;
     position: relative;
-    height: calc(100vh - 88px);
     overflow-y: hidden;
     float: left;
     clear: both;
+
+    @for $i from 0 through 8 {
+      &:nth-of-type(#{$i + 1}) {
+        height: calc(100vh - 88px - (35px * #{$i}));
+      }
+    }
   }
 
   .group-header {
@@ -16,7 +21,7 @@
     float: left;
     clear: both;
     width: 100%;
-    transition: all $speed $easing;
+    //transition: all $speed $easing;
     position: relative;
     z-index: 2;
     background: gray;
@@ -25,7 +30,7 @@
     transform: translateY(0);
 
     &.allowed {
-      color: green;
+      background: green;
     }
 
     &.sticky {
