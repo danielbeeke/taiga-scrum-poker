@@ -32,10 +32,22 @@ Template.tablesCreate.helpers({
         var formState = Session.get('forms.tables-create');
         if (formState && formState.project) {
             Meteor.subscribe('members', parseInt(formState.project));
+            Meteor.subscribe('projectdetails', parseInt(formState.project));
+            var currentProject = ProjectDetails.findOne({id: parseInt(formState.project)});
 
-            var currentProject = Projects.findOne({ id: parseInt(formState.project) });
             if (currentProject && currentProject.members && currentProject.members.length) {
-                var members = Members.find({ _id: {$in: currentProject.members }});
+                var members = [];
+
+                // TODO get the member roles of the member inside this project.
+                console.log(formState.disciplines)
+
+                $.each(currentProject.members, function (delta, member) {
+                    console.log(member)
+                    if ($.inArray(member.role, formState.disciplines) != -1) {
+                        members.push(member);
+                    }
+                });
+
                 return members;
             }
         }
@@ -57,10 +69,14 @@ Template.tablesCreate.helpers({
     disciplines: function () {
         var formState = Session.get('forms.tables-create');
         if (formState && formState.project) {
-            Meteor.subscribe('members', parseInt(formState.project));
+            Meteor.subscribe('projectdetails', parseInt(formState.project));
+            var currentProject = ProjectDetails.findOne({id: parseInt(formState.project)});
 
-            var currentProject = Projects.findOne({id: parseInt(formState.project)});
             console.log(currentProject)
+
+            if (currentProject && currentProject.roles) {
+                return currentProject.roles;
+            }
         }
     }
 });

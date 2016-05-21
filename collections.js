@@ -1,4 +1,5 @@
 Projects = new Mongo.Collection('projects');
+ProjectDetails = new Mongo.Collection('projectdetails');
 Tables = new Mongo.Collection('tables');
 Estimations = new Mongo.Collection('estimations');
 UserStories = new Mongo.Collection('userstories');

@@ -1,103 +1,70 @@
-Meteor.publish('projects', function() {
-    var self = this;
-    if (this.userId) {
-        var user = Meteor.users.findOne(this.userId);
+var apiCollections = [
+    {
+        name: 'projects',
+        path: '/projects?member=UID'
+    },
+    {
+        name: 'projectdetails',
+        path: '/projects/ARGUMENT'
+    },
+    {
+        name: 'userstories',
+        path: '/userstories?project=ARGUMENT'
+    },
+    {
+        name: 'points',
+        path: '/points?project=ARGUMENT'
+    },
+    {
+        name: 'members',
+        path: '/users?project=ARGUMENT'
+    },
+];
 
-        try {
-            var response = HTTP.get(user.taiga.url + '/projects?member=' + user.taiga.id, {
-                headers: {
-                    'Authorization': 'Bearer ' + user.taiga.bearer
+_.each(apiCollections, function (apiCollection) {
+    Meteor.publish(apiCollection.name, function(argument) {
+        var self = this;
+        if (this.userId) {
+            var user = Meteor.users.findOne(this.userId);
+
+            try {
+                var path = apiCollection.path;
+
+                if (argument) {
+                    path = path.replace('ARGUMENT', parseInt(argument));
                 }
-            });
 
-            _.each(response.data, function(item) {
-                self.added('projects', item.id, item);
-            });
+                var hasUidInPath = path.search('UID');
 
-            self.ready();
-
-        } catch(error) {
-            console.log(error);
-        }
-    }
-});
-
-Meteor.publish('userstories', function(projectId) {
-    var self = this;
-    if (this.userId) {
-        var user = Meteor.users.findOne(this.userId);
-
-        try {
-            var response = HTTP.get(user.taiga.url + '/userstories?project=' + parseInt(projectId), {
-                headers: {
-                    'Authorization': 'Bearer ' + user.taiga.bearer
+                if (hasUidInPath != -1) {
+                    path = path.replace('UID', user.taiga.id);
                 }
-            });
 
-            _.each(response.data, function(item) {
-                self.added('userstories', item.id, item);
-            });
+                var response = HTTP.get(user.taiga.url + path, {
+                    headers: {
+                        'Authorization': 'Bearer ' + user.taiga.bearer
+                    }
+                });
 
-            self.ready();
-
-        } catch(error) {
-            console.log(error);
-        }
-    }
-});
-
-
-Meteor.publish('points', function(projectId) {
-    var self = this;
-
-    if (this.userId) {
-        var user = Meteor.users.findOne(this.userId);
-        try {
-
-            var response = HTTP.get(user.taiga.url + '/points?project=' + projectId, {
-                headers: {
-                    'Authorization': 'Bearer ' + user.taiga.bearer
+                if (response.data && response.data.id) {
+                    self.added(apiCollection.name, response.data.id, response.data);
                 }
-            });
-
-            _.each(response.data, function(item) {
-                self.added('points', item.id, item);
-            });
-
-            self.ready();
-
-        } catch(error) {
-            console.log(error);
-        }
-
-    }
-});
-
-
-Meteor.publish('members', function(projectId) {
-    var self = this;
-
-    if (this.userId) {
-        var user = Meteor.users.findOne(this.userId);
-        try {
-
-            var response = HTTP.get(user.taiga.url + '/users?project=' + projectId, {
-                headers: {
-                    'Authorization': 'Bearer ' + user.taiga.bearer
+                else {
+                    _.each(response.data, function(item) {
+                        self.added(apiCollection.name, item.id, item);
+                    });
                 }
-            });
 
-            _.each(response.data, function(item) {
-                self.added('members', item.id, item);
-            });
+                self.ready();
 
-            self.ready();
+            } catch(error) {
 
-        } catch(error) {
-            console.log(error);
+                console.log(apiCollection.name)
+                console.log(user.taiga.url + path)
+                console.log(error)
+            }
         }
-
-    }
+    });
 });
 
 

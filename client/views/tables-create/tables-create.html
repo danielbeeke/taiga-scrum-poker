@@ -31,13 +31,13 @@
                     {{#each disciplines}}
                     <div class="checkbox-option discipline">
                         <input type="checkbox" name="disciplines" value="{{ id }}" id="disciplines-{{ id }}" checked="{{ formState 'tables-create' 'disciplines' id }}">
-                        <label class="label" for="disciplines-{{ id }}"></label>
+                        <label class="label" for="disciplines-{{ id }}">{{ name }}</label>
                     </div>
                     {{/each}}
                 </div>
             </div>
 
-                <h3 class="group-header {{#if formState 'tables-create' 'project' }} allowed {{/if}}">Select players</h3>
+                <h3 class="group-header {{#if formState 'tables-create' 'disciplines' }} allowed {{/if}}">Select players</h3>
 
                 {{#if formState 'tables-create' 'disciplines' }}
                     <div class="form-group players">
