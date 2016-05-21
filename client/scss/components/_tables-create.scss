@@ -1,0 +1,79 @@
+#tables-create {
+  .form-item {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .checkbox-option.userstory,
+  .radio-option.project {
+    position: relative;
+    width: 400px;
+    margin: 10px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 100%;
+    background: black;
+    color: white;
+
+    .label {
+      padding: 20px;
+      float: left;
+      width: 100%;
+    }
+
+    input {
+      visibility: hidden;
+      position: absolute;
+    }
+
+    input:checked + .label {
+      background: green;
+    }
+  }
+
+
+  .checkbox-option.player {
+    position: relative;
+    margin: 10px;
+    flex-grow: 0;
+    width: 100px;
+    flex-shrink: 1;
+    max-width: 100%;
+    color: white;
+    padding: 20px;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      float: left;
+      padding-top: 100%;
+    }
+
+    img,
+    .label {
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .label {
+      border: 2px solid transparent;
+    }
+    
+    .full-name {
+      display: none;
+    }
+
+    input {
+      visibility: hidden;
+    }
+
+    input:checked + .label {
+      border: 2px solid green;
+    }
+  }
+}

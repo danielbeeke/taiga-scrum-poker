@@ -20,3 +20,10 @@ input.hidden {
   visibility: hidden;
   position: absolute;
 }
+
+*:focus {
+  outline: none;
+}
+*::-moz-focus-inner {
+  border: none;
+}

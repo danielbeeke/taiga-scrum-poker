@@ -3,16 +3,23 @@ Template.tablesCreate.events({
         event.preventDefault();
         var formState = Session.get('forms.tables-create');
         formState.project = parseInt(formState.project);
-        Meteor.call('tables-create', formState, function (error, tableId) {
-            Router.go('table', {_id: tableId });
-        })
+
+        if (formState.userstories && formState.userstories.length) {
+            Meteor.call('tables-create', formState, function (error, tableId) {
+                Router.go('table', {_id: tableId });
+            })
+        }
+
+        return false;
     },
     "click .group-header": function (event, template) {
-        var delta = $('.group-header').index(event.target);
+        if ($(event.target).next('.form-group').length) {
+            var delta = $('.group-header').index(event.target);
 
-        $('html, body').animate({
-            scrollTop: $(event.target).next('.form-group').offset().top - $('.group-header:first').outerHeight() - (delta * 35) + 'px'
-        }, 600);
+            $('html, body').animate({
+                scrollTop: $(event.target).next('.form-group').offset().top - $('.group-header:first').outerHeight() - (delta * 35) + 'px'
+            }, 600);
+        }
     }
 });
 
@@ -45,6 +52,15 @@ Template.tablesCreate.helpers({
         var formState = Session.get('forms.tables-create');
         if (formState && formState[name]) {
             return 'allowed';
+        }
+    },
+    disciplines: function () {
+        var formState = Session.get('forms.tables-create');
+        if (formState && formState.project) {
+            Meteor.subscribe('members', parseInt(formState.project));
+
+            var currentProject = Projects.findOne({id: parseInt(formState.project)});
+            console.log(currentProject)
         }
     }
 });

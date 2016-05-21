@@ -128,6 +128,33 @@ Meteor.publish('issues', function(projectId) {
 });
 
 
+Meteor.publish('roles', function(projectId) {
+    var self = this;
+
+    if (this.userId) {
+        var user = Meteor.users.findOne(this.userId);
+        try {
+
+            var response = HTTP.get(user.taiga.url + '/roles?project=' + projectId, {
+                headers: {
+                    'Authorization': 'Bearer ' + user.taiga.bearer
+                }
+            });
+
+            _.each(response.data, function(item) {
+                self.added('roles', item.id, item);
+            });
+
+            self.ready();
+
+        } catch(error) {
+            console.log(error);
+        }
+
+    }
+});
+
+
 Meteor.publish('tables', function(tableId) {
     if (this.userId) {
         var user = Meteor.users.findOne(this.userId);

@@ -1,13 +1,8 @@
 Meteor.methods({
     'tables-create': function (table) {
         table.uid = this.userId;
-
         var currentUser = Meteor.users.findOne({ _id: this.userId });
-
-        console.log(currentUser)
-
         table.instance = currentUser.taiga.url;
-
         return Tables.insert(table)
     },
     'tables-user-visit': function (tableId) {
@@ -22,7 +17,6 @@ Meteor.methods({
     },
     'tables-set-current-userstory': function (tableId) {
         var userStoryId = UserStories.find({}, { limit: 1 }).fetch()[0].id;
-
         Tables.update(tableId, {
             $set: { 'currentUserStoryId': userStoryId }
         });
@@ -49,7 +43,6 @@ Meteor.methods({
     },
     'estimation-delete': function (estimationSelector) {
         estimationSelector.uid = this.userId;
-
         Estimations.remove(estimationSelector);
     }
 })

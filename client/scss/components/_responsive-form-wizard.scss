@@ -1,11 +1,11 @@
 .responsive-form-wizard {
   .form-group {
-    margin: 0 20px;
     padding: 20px;
     position: relative;
-    overflow-y: hidden;
+    overflow-y: auto;
     float: left;
     clear: both;
+    width: 100%;
 
     @for $i from 0 through 8 {
       &:nth-of-type(#{$i + 1}) {
@@ -21,13 +21,18 @@
     float: left;
     clear: both;
     width: 100%;
-    //transition: all $speed $easing;
+    transition: background $speed $easing, color $speed $easing;
     position: relative;
     z-index: 2;
     background: gray;
     box-shadow: 0 0 5px black;
     color: white;
     transform: translateY(0);
+    border: 0;
+    text-align: left;
+    font-size: 22px;
+    font-family: 'lane';
+    font-weight: 700;
 
     &.allowed {
       background: green;
