@@ -1,34 +1,42 @@
 var apiCollections = [
     {
-        name: 'projects',
-        path: '/projects?member=UID'
+        collection: 'projects',
+        taigaApiUrl: '/projects?member=UID'
     },
     {
-        name: 'projectdetails',
-        path: '/projects/ARGUMENT'
+        collection: 'projectdetails',
+        taigaApiUrl: '/projects/ARGUMENT'
     },
     {
-        name: 'userstories',
-        path: '/userstories?project=ARGUMENT'
+        collection: 'userstories',
+        taigaApiUrl: '/userstories?project=ARGUMENT'
     },
     {
-        name: 'points',
-        path: '/points?project=ARGUMENT'
+        collection: 'points',
+        taigaApiUrl: '/points?project=ARGUMENT'
     },
     {
-        name: 'members',
-        path: '/users?project=ARGUMENT'
+        collection: 'members',
+        taigaApiUrl: '/users?project=ARGUMENT'
     },
+    {
+        collection: 'issues',
+        taigaApiUrl: '/issues?project=ARGUMENT'
+    },
+    {
+        collection: 'roles',
+        taigaApiUrl: '/roles?project=ARGUMENT'
+    }
 ];
 
 _.each(apiCollections, function (apiCollection) {
-    Meteor.publish(apiCollection.name, function(argument) {
+    Meteor.publish(apiCollection.collection, function(argument) {
         var self = this;
         if (this.userId) {
             var user = Meteor.users.findOne(this.userId);
 
             try {
-                var path = apiCollection.path;
+                var path = apiCollection.taigaApiUrl;
 
                 if (argument) {
                     path = path.replace('ARGUMENT', parseInt(argument));
@@ -47,80 +55,22 @@ _.each(apiCollections, function (apiCollection) {
                 });
 
                 if (response.data && response.data.id) {
-                    self.added(apiCollection.name, response.data.id, response.data);
+                    self.added(apiCollection.collection, response.data.id, response.data);
                 }
                 else {
                     _.each(response.data, function(item) {
-                        self.added(apiCollection.name, item.id, item);
+                        self.added(apiCollection.collection, item.id, item);
                     });
                 }
 
                 self.ready();
 
             } catch(error) {
-
-                console.log(apiCollection.name)
-                console.log(user.taiga.url + path)
-                console.log(error)
+                console.log(error);
             }
         }
     });
 });
-
-
-Meteor.publish('issues', function(projectId) {
-    var self = this;
-
-    if (this.userId) {
-        var user = Meteor.users.findOne(this.userId);
-        try {
-
-            var response = HTTP.get(user.taiga.url + '/issues?project=' + projectId, {
-                headers: {
-                    'Authorization': 'Bearer ' + user.taiga.bearer
-                }
-            });
-
-            _.each(response.data, function(item) {
-                self.added('issues', item.id, item);
-            });
-
-            self.ready();
-
-        } catch(error) {
-            console.log(error);
-        }
-
-    }
-});
-
-
-Meteor.publish('roles', function(projectId) {
-    var self = this;
-
-    if (this.userId) {
-        var user = Meteor.users.findOne(this.userId);
-        try {
-
-            var response = HTTP.get(user.taiga.url + '/roles?project=' + projectId, {
-                headers: {
-                    'Authorization': 'Bearer ' + user.taiga.bearer
-                }
-            });
-
-            _.each(response.data, function(item) {
-                self.added('roles', item.id, item);
-            });
-
-            self.ready();
-
-        } catch(error) {
-            console.log(error);
-        }
-
-    }
-});
-
 
 Meteor.publish('tables', function(tableId) {
     if (this.userId) {
