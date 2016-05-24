@@ -26,6 +26,10 @@ var apiCollections = [
     {
         collection: 'roles',
         taigaApiUrl: '/roles?project=ARGUMENT'
+    },
+    {
+        collection: 'memberships',
+        taigaApiUrl: '/memberships?project=ARGUMENT'
     }
 ];
 
