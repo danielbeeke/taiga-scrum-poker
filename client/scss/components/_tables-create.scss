@@ -1,24 +1,23 @@
 #tables-create {
   .form-item {
-    display: flex;
-    flex-wrap: wrap;
+    float: left;
   }
 
+  .checkbox-option.discipline,
   .checkbox-option.userstory,
   .radio-option.project {
     position: relative;
     width: 400px;
-    margin: 10px;
-    flex-grow: 1;
-    flex-shrink: 1;
+    margin-bottom: 1px;
     max-width: 100%;
     background: black;
     color: white;
+    float: left;
 
     .label {
       padding: 20px;
       float: left;
-      width: 100%;
+      width: calc(100% - 40px);
     }
 
     input {

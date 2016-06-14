@@ -1,11 +1,11 @@
 <template name="tablesCreate">
-    <form id="tables-create" class="responsive-form-wizard">
+    <form id="tables-create" class="responsive-form-wizard dragscroll">
 
         <h3 class="group-header allowed">Choose a name</h3>
 
         <div class="form-group">
             <div class="form-item">
-                <input type="text" name="name" placeholder="Name" value="{{ formState 'tables-create' 'name' }}">
+                <input type="text" name="name" placeholder="Name" autocomplete="off" value="{{ formState 'tables-create' 'name' }}">
             </div>
         </div>
 
