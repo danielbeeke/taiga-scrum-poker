@@ -14,12 +14,13 @@
   // Triangle.
   &:before {
     display: block;
+    transition: opacity $speed $easing;
     content: '';
     position: absolute;
     width: 0;
     height: 0;
-    top: $padding;
-    right: $padding * 2;
+    top: $padding + 3px;
+    right: 40px;
     border-style: solid;
     border-width: 0 6px 6px 6px;
     border-color: transparent transparent $black transparent;
@@ -29,13 +30,14 @@
 
   // Triangle.
   &:after {
+    transition: opacity $speed $easing;
     display: block;
     content: '';
     position: absolute;
     width: 0;
     height: 0;
-    top: $padding + 12px;
-    right: $padding * 2;
+    top: $padding + 14px;
+    right: 40px;
     border-style: solid;
     border-width: 6px 6px 0 6px;
     border-color: $black transparent transparent transparent;
@@ -92,6 +94,10 @@
   }
 
   &:not(.just-clicked):hover {
+    &:after, &:before {
+      opacity: 0;
+    }
+
     .form-item-inner {
       max-height: 600px;
     }
