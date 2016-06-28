@@ -1,7 +1,7 @@
 Router.configure({
   layoutTemplate: 'main',
   loadingTemplate: 'loading',
-  onBeforeAction: function () {
+  onBeforeAction1: function () {
     var routeName = Router.current().route.getName();
     if (!Meteor.user() && routeName != 'instance-create') {
       Router.go('login')
@@ -74,22 +74,9 @@ Router.route('/tables/:_id', {
     ];
   }
 });
-//
-//Router.route('/tables/:_id/:issue', {
-//  name: 'table-issue',
-//  title: 'Table',
-//  waitOn: function() {
-//    return [
-//      Meteor.subscribe('tables', this.params._id),
-//      Meteor.subscribe('estimations', this.params._id),
-//      Meteor.subscribe('users')
-//    ];
-//  }
-//});
 
-Router.route('/tables/:_id/play', {
-  name: 'table-play',
-  layoutTemplate: false,
+Router.route('/tables/:_id/:issue', {
+  name: 'table-issue',
   title: 'Table',
   waitOn: function() {
     return [
@@ -98,6 +85,11 @@ Router.route('/tables/:_id/play', {
       Meteor.subscribe('users')
     ];
   }
+});
+
+Router.route('/success', {
+  name: 'success',
+  title: 'Success'
 });
 
 
