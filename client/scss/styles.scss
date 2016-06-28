@@ -5,7 +5,7 @@
 
 @import 'base/elements';
 @import 'base/typography';
-@import 'base/fonts';
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700,400italic,700italic');
 
 @import 'components/buttons';
 @import 'components/card';
@@ -20,5 +20,7 @@
 @import 'components/responsive-form-wizard';
 @import 'components/tables-create';
 @import 'components/success';
+@import 'components/page-title';
+@import 'components/instance-create';
 
 @import 'layout/main';

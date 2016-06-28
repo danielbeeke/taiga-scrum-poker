@@ -60,3 +60,7 @@ Template.registerHelper('compare', function(v1, v2) {
         return v1 === v2;
     }
 });
+
+Blaze.addBodyClass(function() {
+    return Router.current().route.getName();
+});

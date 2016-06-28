@@ -1,19 +1,26 @@
 <template name="instanceCreate">
+    <div class="instance-create-form-wrapper">
 
-    <form id="instance-create-form" class="instance-create-form">
+        <h1 class="page-title">Add your Taiga instance.</h1>
 
-        <div class="form-item">
-            <input type="text" name="instance-name" placeholder="Name">
-        </div>
+        <form id="instance-create-form" class="instance-create-form">
 
-        <div class="form-item">
-            <input type="text" name="instance-url" placeholder="Taiga instance API URL">
-        </div>
+            <div class="form-item">
+                <div class="label-above">Name</div>
+                <input type="text" name="instance-name">
+            </div>
 
-        <div class="form-item">
-            <button class="button primary arrow-right block">Save <span class="arrow"></span></button>
-        </div>
+            <div class="form-item">
+                <div class="label-above">Taiga instance API URL</div>
+                <input type="text" name="instance-url">
+            </div>
 
-    </form>
+            <div class="form-actions">
+                <button class="button primary arrow-right block">Save <span class="arrow"></span></button>
+                <a href="/" class="link">Cancel</a>
+            </div>
 
+        </form>
+
+    </div>
 </template>

@@ -1,16 +1,32 @@
 .radios-as-select {
   position: relative;
-  height: 53px;
+  height: 57px;
   z-index: 1;
 
   .form-item-inner {
-    max-height: 60px;
+    max-height: 57px;
     transition: max-height $speed $easing;
     overflow: hidden;
-    border-radius: $padding-small;
     margin-bottom: $padding;
+    border: 2px solid $grey-dark;
   }
-  
+
+  // Triangle.
+  &:before {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: $padding;
+    right: $padding * 2;
+    border-style: solid;
+    border-width: 0 6px 6px 6px;
+    border-color: transparent transparent $black transparent;
+    pointer-events: none;
+    z-index: 2;
+  }
+
   // Triangle.
   &:after {
     display: block;
@@ -18,8 +34,8 @@
     position: absolute;
     width: 0;
     height: 0;
-    top: $padding + 6px;
-    right: $padding;
+    top: $padding + 12px;
+    right: $padding * 2;
     border-style: solid;
     border-width: 6px 6px 0 6px;
     border-color: $black transparent transparent transparent;
@@ -43,17 +59,23 @@
     transition: max-height $speed $easing, padding $speed $easing, box-shadow $speed $easing, background-color $speed $easing, color ($speed / 2) $easing;
     overflow: hidden;
     cursor: pointer;
-    background-color: $yellow-lighter;
-    color: $yellow-lighter;
+    background-color: $white;
     float: left;
-    font-size: 24px;
+    font-size: 20px;
+    line-height: 21px;
     position: relative;
     width: 100%;
-    text-overflow: ellipsis;
 
     &:hover {
-      background-color: $yellow-lighter;
+      background-color: $primary;
     }
+  }
+
+  .instance-name {
+    text-overflow: ellipsis;
+    transition: max-width $speed $easing;
+    max-width: calc(100% - 24px);
+    overflow: hidden;
   }
 
   input + .label {
@@ -74,6 +96,10 @@
       max-height: 600px;
     }
 
+    .instance-name {
+      max-width: calc(100% - 60px);
+    }
+
     .label:hover {
       color: $black;
     }
@@ -81,35 +107,5 @@
 
   input:checked + .label {
     color: $black;
-  }
-
-  &.less-visually-important {
-    &:after {
-      border-color: $green-light transparent transparent transparent;
-    }
-
-    .label {
-      background-color: $sand;
-      color: $sand;
-
-      &:hover {
-        background-color: $sand;
-      }
-    }
-
-    input:checked + .label,
-    &:hover input + .label {
-      color: $grey-middle;
-    }
-
-    &:hover {
-      .label:hover {
-        color: $green-light;
-      }
-    }
-
-    input:checked + .label {
-      color: $green-light;
-    }
   }
 }

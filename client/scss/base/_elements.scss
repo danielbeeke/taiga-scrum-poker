@@ -6,10 +6,18 @@
 
 html, body {
   margin: 0;
-  padding: 0;
   height: 100%;
-  background: $yellow-light;
 }
+
+html {
+  padding: 0;
+}
+
+body {
+  background: $primary;
+  padding: $padding;
+}
+
 ul, ol {
   margin: 0;
   padding: 0;

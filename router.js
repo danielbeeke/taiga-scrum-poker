@@ -1,7 +1,7 @@
 Router.configure({
   layoutTemplate: 'main',
   loadingTemplate: 'loading',
-  onBeforeAction1: function () {
+  onBeforeAction: function () {
     var routeName = Router.current().route.getName();
     if (!Meteor.user() && routeName != 'instance-create') {
       Router.go('login')

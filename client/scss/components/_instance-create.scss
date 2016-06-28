@@ -1,0 +1,29 @@
+.instance-create-form-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  position: absolute;
+  left: $padding;
+  right: $padding;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+
+  .instance-create-form {
+    background: $white;
+    box-shadow: 0 0 6px -4px $secondary;
+    @include clearfix;
+    padding-top: $padding;
+    margin-bottom: $padding;
+  }
+}
+
+body.instance-create {
+  background: $secondary;
+
+  @media screen and (max-height: 400px) {
+    .instance-create-form-wrapper {
+      top: $padding;
+      transform: translateY(0);
+    }
+  }
+}

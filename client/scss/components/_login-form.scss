@@ -1,8 +1,20 @@
-.login-form {
-  max-width: 600px;
-  width: 100%;
+.login-form-wrapper {
+  max-width: 400px;
   margin: 0 auto;
-  padding: $padding;
+  position: absolute;
+  left: $padding;
+  right: $padding;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+
+  .login-form {
+    background: $white;
+    box-shadow: 0 0 6px -4px $secondary;
+    @include clearfix;
+    margin-bottom: $padding;
+    padding-top: $padding;
+  }
 
   .instance-name,
   .favicon {
@@ -42,7 +54,7 @@
       content: '';
       width: 2px;
       height: 16px;
-      background: $grey-light;
+      background: $white;
       position: absolute;
       top: 8px;
       left: 14px;
@@ -59,8 +71,19 @@
 
     &:hover {
       &:after, &:before {
-        background: $green-light;
+        background: $black;
       }
+    }
+  }
+}
+
+body.login {
+  background: $secondary;
+
+  @media screen and (max-height: 400px) {
+    .login-form-wrapper {
+      top: $padding;
+      transform: translateY(0);
     }
   }
 }

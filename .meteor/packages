@@ -22,3 +22,4 @@ seba:minifiers-autoprefixer
 fourseven:scss
 chriswessels:hammer
 momentjs:moment
+london:body-class

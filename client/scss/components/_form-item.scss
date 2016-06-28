@@ -5,27 +5,66 @@
   position: relative;
   @include clearfix;
 
+  padding-left: $padding;
+  padding-right: $padding;
+
   & + & {
     margin-top: $padding;
   }
 
+  .label-above {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
   [type="text"],
   [type="password"] {
-    background-color: $yellow;
     border: 0;
-    border-radius: $padding-small;
-    padding: ($padding / 2) $padding;
+    border-bottom: 2px solid $grey-light;
+    padding: ($padding / 2) 0;
     background-image: none !important;
     width: 100%;
     font-size: 20px;
-    font-family: 'lane';
+    font-family: 'Karla', sans-serif;
+    transition: border $speed $easing;
 
-    &::placeholder {
-      text-transform: uppercase;
+    &:focus {
+      border-bottom: 2px solid $grey-dark;
     }
   }
 }
 
 .radio-option {
   position: relative;
+}
+
+.form-actions {
+  margin-top: $padding;
+  clear: both;
+  float: left;
+  width: 100%;
+  @include clearfix;
+  position: relative;
+  background: $secondary;
+
+  .link {
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: $white;
+    line-height: 60px;
+  }
+
+  &:after {
+    background: $primary;
+    width: 100vw;
+    height: 100vh;
+    min-height: 400px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 1px);
+    bottom: 100%;
+    z-index: -1;
+  }
 }
