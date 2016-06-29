@@ -5,21 +5,19 @@
     <h1 class="page-title">Scrumpoker.</h1>
 
     <form id="login-form" class="login-form" novalidate="true">
-      {{#if errorMessage }}
-      <p>{{ errorMessage }}</p>
-      {{/if}}
-
       <div class="form-item">
-        <div class="label-above">Username or email</div>
-        <input type="text" name="name" required>
+        <input type="text" id="edit-name" name="name" required>
+        <label for="edit-name" class="label-above">Username or email</label>
       </div>
 
       <div class="form-item">
-        <div class="label-above">Password</div>
-        <input type="password" name="password" required>
+        <input type="password" id="edit-password" name="password" required>
+        <label for="edit-password" class="label-above">Password</label>
       </div>
 
       <div class="form-item radios-as-select">
+        <div class="label-above">Instance</div>
+
         <div class="form-item-inner">
           {{#each instances}}
           <div class="radio-option">
@@ -36,16 +34,22 @@
             {{ else }}
               <input type="radio" name="taiga-url" value="create" id="taiga-url-create" checked>
             {{/if}}
-            <label class="label" for="taiga-url-create" id="create-taige-url">Add connector</label>
+            <label class="label" for="taiga-url-create" id="create-taige-url">Add instance</label>
 
           </div>
         </div>
       </div>
 
+      {{#if errorMessage }}
+      <p class="form-errors">{{ errorMessage }}</p>
+      {{/if}}
+
       <div class="form-actions">
         <button class="button primary arrow-right block">Login</button>
-        <a href="/" class="link">Lost your password?</a>
-
+        <div class="link">
+          <em class="or-divider">or</em>
+          <a href="/">Lost your password?</a>
+        </div>
       </div>
 
     </form>

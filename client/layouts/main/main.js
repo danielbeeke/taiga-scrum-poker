@@ -6,7 +6,6 @@ Template.main.events({
         var formStateArray = template.$('#' + formId).serializeArray();
 
         template.$(event.target).addClass('used');
-        console.log(template.$(event.target))
 
         if (formStateArray) {
             $.each(formStateArray, function (delta, formValue) {
@@ -29,6 +28,34 @@ Template.main.events({
         }
     }
 });
+
+Template.main.helpers({
+    correction: function () {
+        return parseInt(Session.get('baseline-correction'));
+    }
+});
+
+if (document) {
+    document.onkeypress = function (e) {
+        e = e || window.event;
+
+        if (e.charCode == 45) {
+            $('body').toggleClass('has-visible-baseline');
+        }
+
+        if (e.charCode == 61) {
+            var baseLineCorrection = parseInt(Session.get('baseline-correction'));
+            if (!baseLineCorrection) {
+                baseLineCorrection = 1;
+            }
+            else {
+                baseLineCorrection = baseLineCorrection + 1;
+            }
+
+            Session.set('baseline-correction', baseLineCorrection);
+        }
+    };
+}
 
 Template.registerHelper('formState', function (formId, name, option) {
     var formState = Session.get('forms.' + formId);

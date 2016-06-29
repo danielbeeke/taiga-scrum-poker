@@ -1,5 +1,5 @@
 .button {
-  padding: ($padding / 2) $padding;
+  padding: 20px $padding;
   color: $white;
   text-decoration: none;
   background-color: $primary;
@@ -10,7 +10,7 @@
   float: left;
   overflow: hidden;
   position: relative;
-  line-height: 36px;
+  line-height: 50px;
   font-size: 30px;
   letter-spacing: 1.2px;
   transition: background $speed $easing;
@@ -27,4 +27,9 @@
   &:hover {
     background: darken($primary, 12);
   }
+}
+
+.or-divider {
+  color: $white;
+  display: inline-block;
 }

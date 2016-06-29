@@ -2,6 +2,10 @@ Template.login.events({
   "submit #login-form": function (event, template) {
     event.preventDefault();
 
+    template.$('[name="name"]').addClass('used');
+    template.$('[name="password"]').addClass('used');
+    template.$('.radios-as-select').addClass('used');
+
     var login = {
       name: template.find('[name="name"]').value,
       password: template.find('[name="password"]').value,
@@ -31,11 +35,14 @@ Template.login.events({
     event.preventDefault();
     Meteor.call('instance-delete', this._id);
   },
+  "click .radios-as-select": function (event, template) {
+    template.$(event.target).addClass('hover');
+  },
   "click .radios-as-select .label": function (event, template) {
-    template.$(event.target).parents('.radios-as-select').addClass('just-clicked').one('mouseout', function () {
+    template.$(event.target).parents('.radios-as-select').addClass('used').addClass('just-clicked').one('mouseout', function () {
       var that = this;
       setTimeout(function () {
-        $(that).removeClass('just-clicked')
+        $(that).removeClass('just-clicked').removeClass('hover')
       }, 1000)
     })
   }

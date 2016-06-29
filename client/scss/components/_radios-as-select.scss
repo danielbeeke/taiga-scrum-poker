@@ -1,6 +1,6 @@
 .radios-as-select {
   position: relative;
-  height: 57px;
+  height: 81px;
   z-index: 1;
 
   .form-item-inner {
@@ -19,8 +19,8 @@
     position: absolute;
     width: 0;
     height: 0;
-    top: $padding + 3px;
-    right: 40px;
+    top: $padding + 31px;
+    right: 38px;
     border-style: solid;
     border-width: 0 6px 6px 6px;
     border-color: transparent transparent $grey-light transparent;
@@ -36,8 +36,8 @@
     position: absolute;
     width: 0;
     height: 0;
-    top: $padding + 14px;
-    right: 40px;
+    top: $padding + 42px;
+    right: 38px;
     border-style: solid;
     border-width: 6px 6px 0 6px;
     border-color: $grey-light transparent transparent transparent;
@@ -64,13 +64,13 @@
     background-color: $white;
     float: left;
     font-size: 20px;
-    line-height: 21px;
+    line-height: 25px;
     position: relative;
     width: 100%;
+  }
 
-    &:hover {
-      background-color: $primary;
-    }
+  &:not(.just-clicked) .label:hover {
+    background-color: $primary;
   }
 
   .instance-name {
@@ -84,23 +84,29 @@
     max-height: 0;
   }
 
+  &:not(.just-clicked).hover input + .label,
   &:not(.just-clicked):hover input + .label,
   input:checked + .label {
-    max-height: 53px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    max-height: 54px;
+    padding-top: 11px;
+    padding-bottom: 12px;
     z-index: 1;
     color: $grey-middle;
   }
 
+  &:not(.just-clicked).hover,
   &:not(.just-clicked):hover {
+    .label-above {
+      color: $black;
+    }
+
     &:after, &:before {
       opacity: 0;
     }
 
     .form-item-inner {
       max-height: 600px;
-      border-color: $secondary;
+      border-color: $black;
     }
 
     .instance-name {
@@ -114,5 +120,23 @@
 
   input:checked + .label {
     color: $black;
+  }
+
+  &.used {
+    .label-above {
+      color: $primary;
+    }
+
+    .form-item-inner {
+      border-color: $primary !important;
+    }
+
+    &:before {
+      border-color: transparent transparent $primary transparent;
+    }
+
+    &:after {
+      border-color: $primary transparent transparent transparent;
+    }
   }
 }

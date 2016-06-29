@@ -9,17 +9,24 @@
   padding-right: $padding;
 
   & + & {
-    margin-top: $padding;
+    margin-top: 15px;
   }
 
   .label-above {
     text-transform: uppercase;
     font-size: 12px;
     font-weight: bold;
+    color: $grey-light;
+    transition: color $speed $easing;
+    margin-bottom: 6px;
+    display: block;
+    float: left;
+    width: 100%;
   }
 
   [type="text"],
   [type="password"] {
+    margin-top: 14px;
     border: 0;
     border-bottom: 2px solid $grey-light;
     padding: ($padding / 2) 0;
@@ -35,12 +42,35 @@
     }
 
     &.used:required:invalid {
-      border-bottom: 2px solid red;
+      border-bottom: 2px solid $error;
     }
 
-    &.used:required:valid {
+    &:required:valid {
       border-bottom: 2px solid $primary;
     }
+  }
+
+  [type="text"] + .label-above,
+  [type="password"]  + .label-above {
+    position: absolute;
+    top: 0;
+  }
+
+  [type="text"]:hover + .label-above,
+  [type="text"]:focus + .label-above,
+  [type="password"]:hover  + .label-above,
+  [type="password"]:focus  + .label-above {
+    color: $black;
+  }
+
+  [type="text"].used:invalid + .label-above,
+  [type="password"].used:invalid  + .label-above {
+    color: $error;
+  }
+
+  [type="text"]:valid + .label-above,
+  [type="password"]:valid  + .label-above {
+    color: $primary;
   }
 }
 
@@ -49,7 +79,7 @@
 }
 
 .form-actions {
-  margin-top: $padding;
+  margin-top: $padding + 6px;
   clear: both;
   float: left;
   width: 100%;
@@ -63,6 +93,10 @@
     text-align: center;
     color: $white;
     line-height: 60px;
+
+    a {
+      color: white;
+    }
   }
 
   &:after {
@@ -76,4 +110,14 @@
     bottom: 100%;
     z-index: -1;
   }
+}
+
+.form-errors {
+  float: left;
+  width: calc(100% - (#{$padding * 2}));
+  clear: both;
+  color: $error;
+  margin: 29px 18px 0;
+  padding: 9px 18px;
+  background: lighten($error, 31);
 }
