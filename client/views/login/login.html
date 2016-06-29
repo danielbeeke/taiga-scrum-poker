@@ -4,19 +4,19 @@
 
     <h1 class="page-title">Scrumpoker.</h1>
 
-    <form id="login-form" class="login-form">
+    <form id="login-form" class="login-form" novalidate="true">
       {{#if errorMessage }}
       <p>{{ errorMessage }}</p>
       {{/if}}
 
       <div class="form-item">
         <div class="label-above">Username or email</div>
-        <input type="text" name="name">
+        <input type="text" name="name" required>
       </div>
 
       <div class="form-item">
         <div class="label-above">Password</div>
-        <input type="password" name="password">
+        <input type="password" name="password" required>
       </div>
 
       <div class="form-item radios-as-select">

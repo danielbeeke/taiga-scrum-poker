@@ -5,10 +5,10 @@
 
   .form-item-inner {
     max-height: 57px;
-    transition: max-height $speed $easing;
+    transition: max-height $speed $easing, border $speed $easing;
     overflow: hidden;
     margin-bottom: $padding;
-    border: 2px solid $grey-dark;
+    border: 2px solid $grey-light;
   }
 
   // Triangle.
@@ -23,7 +23,7 @@
     right: 40px;
     border-style: solid;
     border-width: 0 6px 6px 6px;
-    border-color: transparent transparent $black transparent;
+    border-color: transparent transparent $grey-light transparent;
     pointer-events: none;
     z-index: 2;
   }
@@ -40,7 +40,7 @@
     right: 40px;
     border-style: solid;
     border-width: 6px 6px 0 6px;
-    border-color: $black transparent transparent transparent;
+    border-color: $grey-light transparent transparent transparent;
     pointer-events: none;
     z-index: 2;
   }
@@ -100,6 +100,7 @@
 
     .form-item-inner {
       max-height: 600px;
+      border-color: $secondary;
     }
 
     .instance-name {

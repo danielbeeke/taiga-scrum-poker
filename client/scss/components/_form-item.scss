@@ -29,8 +29,17 @@
     font-family: 'Karla', sans-serif;
     transition: border $speed $easing;
 
+    &:hover,
     &:focus {
-      border-bottom: 2px solid $grey-dark;
+      border-bottom: 2px solid $secondary;
+    }
+
+    &.used:required:invalid {
+      border-bottom: 2px solid red;
+    }
+
+    &.used:required:valid {
+      border-bottom: 2px solid $primary;
     }
   }
 }

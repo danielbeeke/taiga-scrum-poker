@@ -5,6 +5,9 @@ Template.main.events({
         var formId = template.$(event.target).parents('form').attr('id');
         var formStateArray = template.$('#' + formId).serializeArray();
 
+        template.$(event.target).addClass('used');
+        console.log(template.$(event.target))
+
         if (formStateArray) {
             $.each(formStateArray, function (delta, formValue) {
                 var inputType = template.$(event.target).parents('form').find('[name="' + formValue.name + '"]:first').attr('type');
@@ -62,5 +65,11 @@ Template.registerHelper('compare', function(v1, v2) {
 });
 
 Blaze.addBodyClass(function() {
-    return Router.current().route.getName();
+    if ( Router.current() &&  Router.current().route) {
+        var routeName = Router.current().route.getName();
+
+        if (routeName) {
+            return routeName;
+        }
+    }
 });

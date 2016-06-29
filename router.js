@@ -30,7 +30,7 @@ Router.route('/', function () {
 Router.route('/login', {
   name: 'login',
   title: 'Login',
-  layoutTemplate: false,
+  //layoutTemplate: false,
   waitOn: function() {
     return [
       Meteor.subscribe('instances')
