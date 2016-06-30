@@ -32,7 +32,8 @@ Router.configure({
         $('body').attr('data-animation', '');
       }, 300);
       next();
-    }
+    };
+
     var routeName = Router.current().route.getName();
     var animationName = previousRoute + '_TO_' + routeName;
 
@@ -53,7 +54,7 @@ Router.configure({
       $('body').attr('data-animation', animationName);
     }
     else {
-      next();
+      proxyNext();
     }
   },
   onStop: function () {

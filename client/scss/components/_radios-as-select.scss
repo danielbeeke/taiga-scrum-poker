@@ -28,6 +28,18 @@
     z-index: 2;
   }
 
+  .radio-option {
+    transition: transform $speed $easing, max-height $speed $easing $speed;
+    transform: translateX(0);
+    overflow: hidden;
+    max-height: 60px;
+
+    &.deleted {
+      max-height: 0;
+      transform: translateX(100%);
+    }
+  }
+
   // Triangle.
   &:after {
     transition: opacity $speed $easing;

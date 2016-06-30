@@ -30,8 +30,14 @@ Template.login.events({
     Router.go('instance-create');
   },
   "click .delete-taiga-instance": function (event, template) {
+    var that = this;
     event.preventDefault();
-    Meteor.call('instance-delete', this._id);
+    template.$(event.target).parent().parent().on('transitionend', function (e) {
+      if (e.originalEvent.propertyName == 'max-height') {
+        Meteor.call('instance-delete', that._id);
+      }
+    }).addClass('deleted');
+    event.stopImmediatePropagation();
   },
   "click .radios-as-select": function (event, template) {
     template.$(event.target).addClass('hover');
