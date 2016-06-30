@@ -29,7 +29,7 @@ Router.configure({
     var next = this.next;
     var proxyNext = function () {
       setTimeout(function () {
-        $('body').attr('data-animation', '');
+        $('body').removeAttr('data-animation');
       }, 300);
       next();
     };

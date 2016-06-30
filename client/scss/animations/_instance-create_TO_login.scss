@@ -11,10 +11,9 @@
     }
 
     .button {
-      color: $primary;
-
-      &:hover {
-        color: darken($primary, 12);
+      .success-icon,
+      .button-text {
+        opacity: 0;
       }
     }
   }
@@ -30,10 +29,9 @@
     }
 
     .button {
-      color: $primary;
-
-      &:hover {
-        color: darken($primary, 12);
+      .success-icon,
+      .button-text {
+        opacity: 0;
       }
     }
   }

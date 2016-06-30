@@ -9,7 +9,9 @@ Template.instanceCreate.events({
             url: instanceUrl,
             name: instanceName
         }, function (error) {
-            Router.go('login');
+            $('.button').on('transitionend', function () {
+                Router.go('login');
+            }).addClass('success');
         })
     }
 });

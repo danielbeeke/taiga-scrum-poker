@@ -24,7 +24,24 @@
     width: 100%;
   }
 
-  &:hover {
+  .button-text {
+    opacity: 1;
+    transition: opacity $speed $easing;
+  }
+
+  &.success {
+    .success-icon {
+      opacity: 1;
+    }
+
+    .button-text {
+      opacity: 0;
+    }
+  }
+}
+
+body:not([data-animation]) {
+  .button:not(.success):hover {
     background: darken($primary, 12);
   }
 }
@@ -32,4 +49,40 @@
 .or-divider {
   color: $white;
   display: inline-block;
+}
+
+@keyframes success {
+  0%   { background-color: $primary; }
+  50%  { background-color: green; }
+  90% { background-color: $primary; }
+  100% { background-color: $primary; }
+}
+
+.success-icon {
+  opacity: 0;
+  transition: opacity $speed $easing;
+
+  &:before {
+    content: '';
+    display: block;
+    height: 20px;
+    width: 10px;
+    background: $success;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-40deg) translate(-13px, -5px);
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: 10px;
+    width: 60px;
+    background: $success;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-40deg) translate(12px, 8px);
+  }
 }
