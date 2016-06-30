@@ -1,8 +1,24 @@
+var previousRoute;
+
+var animations = {
+  'login_TO_instance-create': function (next) {
+    setTimeout(function () {
+      $('.login-form-wrapper .form-items').addClass('overflowHidden').on('transitionend', function (e) {
+        setTimeout(function () {
+          next();
+        }, 2000);
+      })
+    }, 300)
+  }
+};
+
 Router.configure({
   layoutTemplate: 'main',
   loadingTemplate: 'loading',
   onBeforeAction: function () {
+    var next = this.next;
     var routeName = Router.current().route.getName();
+
     if (!Meteor.user() && routeName != 'instance-create') {
       Router.go('login')
     }
@@ -14,7 +30,19 @@ Router.configure({
     if (routeName != 'table' && routeName != 'table-play') {
       Meteor.call('tables-user-leave', this.params._id);
     }
-    this.next();
+
+    if (previousRoute && routeName) {
+      var animationName = previousRoute + '_TO_' + routeName;
+      $('body').attr('data-animation', animationName);
+
+      if (animations[animationName] && typeof animations[animationName] == 'function') {
+        animations[animationName](next);
+      }
+    }
+    else {
+      previousRoute = routeName;
+      next();
+    }
   }
 });
 

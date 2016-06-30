@@ -117,7 +117,18 @@
   width: calc(100% - (#{$padding * 2}));
   clear: both;
   color: $error;
-  margin: 29px 18px 0;
+  margin: 26px 18px 0;
   padding: 9px 18px;
   background: lighten($error, 31);
+}
+
+.form-items {
+  position: relative;
+  @include clearfix;
+  max-height: 600px;
+  transition: all $speed $easing $speed;
+
+  &.overflowHidden {
+    overflow: hidden;
+  }
 }

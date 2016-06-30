@@ -5,44 +5,47 @@
     <h1 class="page-title">Scrumpoker.</h1>
 
     <form id="login-form" class="login-form" novalidate="true">
-      <div class="form-item">
-        <input type="text" id="edit-name" name="name" required>
-        <label for="edit-name" class="label-above">Username or email</label>
-      </div>
+      <div class="form-items">
 
-      <div class="form-item">
-        <input type="password" id="edit-password" name="password" required>
-        <label for="edit-password" class="label-above">Password</label>
-      </div>
+        <div class="form-item">
+          <input type="text" id="edit-name" name="name" required>
+          <label for="edit-name" class="label-above">Username or email</label>
+        </div>
 
-      <div class="form-item radios-as-select">
-        <div class="label-above">Instance</div>
+        <div class="form-item">
+          <input type="password" id="edit-password" name="password" required>
+          <label for="edit-password" class="label-above">Password</label>
+        </div>
 
-        <div class="form-item-inner">
-          {{#each instances}}
-          <div class="radio-option">
-            <input type="radio" name="taiga-url" value="{{ url }}" id="taiga-url-{{ _id }}" {{ first(@index) }}>
-            <label class="label" for="taiga-url-{{ _id }}"><img class="favicon" src="{{ favIcon }}"><span class="instance-name">{{ name }}</span>
-              {{#unless compare url 'https://api.taiga.io/api/v1' }}<a class="delete-taiga-instance" href="#">Delete taiga instance</a>{{/unless}}
-            </label>
-          </div>
-          {{/each}}
+        <div class="form-item radios-as-select">
+          <div class="label-above">Instance</div>
 
-          <div class="radio-option">
-            {{#if instances }}
-              <input type="radio" name="taiga-url" value="create" id="taiga-url-create">
-            {{ else }}
-              <input type="radio" name="taiga-url" value="create" id="taiga-url-create" checked>
-            {{/if}}
-            <label class="label" for="taiga-url-create" id="create-taige-url">Add instance</label>
+          <div class="form-item-inner">
+            {{#each instances}}
+            <div class="radio-option">
+              <input type="radio" name="taiga-url" value="{{ url }}" id="taiga-url-{{ _id }}" {{ first(@index) }}>
+              <label class="label" for="taiga-url-{{ _id }}"><img class="favicon" src="{{ favIcon }}"><span class="instance-name">{{ name }}</span>
+                {{#unless compare url 'https://api.taiga.io/api/v1' }}<a class="delete-taiga-instance" href="#">Delete taiga instance</a>{{/unless}}
+              </label>
+            </div>
+            {{/each}}
 
+            <div class="radio-option">
+              {{#if instances }}
+                <input type="radio" name="taiga-url" value="create" id="taiga-url-create">
+              {{ else }}
+                <input type="radio" name="taiga-url" value="create" id="taiga-url-create" checked>
+              {{/if}}
+              <label class="label" for="taiga-url-create" id="create-taige-url">Add instance</label>
+
+            </div>
           </div>
         </div>
-      </div>
 
-      {{#if errorMessage }}
-      <p class="form-errors">{{ errorMessage }}</p>
-      {{/if}}
+        {{#if errorMessage }}
+        <p class="form-errors">{{ errorMessage }}</p>
+        {{/if}}
+      </div>
 
       <div class="form-actions">
         <button class="button primary arrow-right block">Login</button>

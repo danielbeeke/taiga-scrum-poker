@@ -27,9 +27,7 @@ Template.login.events({
 
   },
   "click #create-taige-url": function (event, template) {
-    setTimeout(function () {
-      Router.go('instance-create');
-    }, 500)
+    Router.go('instance-create');
   },
   "click .delete-taiga-instance": function (event, template) {
     event.preventDefault();

@@ -1,0 +1,27 @@
+[data-animation="login_TO_instance-create"] {
+  .login-form-wrapper {
+    .form-items {
+      max-height: 129px;
+    }
+
+    .link,
+    .page-title,
+    .form-items {
+      opacity: 0;
+    }
+
+    .button {
+      color: $primary;
+
+      &:hover {
+        color: darken($primary, 12);
+      }
+    }
+  }
+}
+
+@keyframes overflowFix {
+  0%   { overflow: visible; }
+  66%  { overflow: hidden; }
+  100% { overflow: hidden; }
+}

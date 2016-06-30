@@ -5,14 +5,16 @@
 
         <form id="instance-create-form" class="instance-create-form" novalidate>
 
-            <div class="form-item">
-                <input type="text" id="edit-instance-name" name="instance-name" required>
-                <label for="edit-instance-name" class="label-above">Name</label>
-            </div>
+            <div class="form-items">
+                <div class="form-item">
+                    <input type="text" id="edit-instance-name" name="instance-name" required>
+                    <label for="edit-instance-name" class="label-above">Name</label>
+                </div>
 
-            <div class="form-item">
-                <input type="text" id="edit-instance-url" name="instance-url" required>
-                <label for="edit-instance-url" class="label-above">API URL</label>
+                <div class="form-item">
+                    <input type="text" id="edit-instance-url" name="instance-url" required>
+                    <label for="edit-instance-url" class="label-above">API URL</label>
+                </div>
             </div>
 
             <div class="form-actions">
@@ -20,7 +22,7 @@
 
                 <div class="link">
                     <em class="or-divider">or</em>
-                    <a href="/">cancel</a>
+                    <a href="{{pathFor route='login'}}">cancel</a>
                 </div>
             </div>
 
