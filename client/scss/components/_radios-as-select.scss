@@ -4,6 +4,7 @@
   z-index: 1;
 
   .form-item-inner {
+    background-color: $white;
     max-height: 57px;
     transition: max-height $speed $easing, border $speed $easing;
     overflow: hidden;

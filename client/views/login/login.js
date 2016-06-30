@@ -17,7 +17,9 @@ Template.login.events({
       userCallback: function (error) {
         if (!error) {
           Session.set('errorMessage', '');
-          Router.go('tables')
+          $('.button').on('animationend', function () {
+            Router.go('tables')
+          }).addClass('success');
         }
         else {
           Session.set('errorMessage', 'Something went wrong, please try again.');

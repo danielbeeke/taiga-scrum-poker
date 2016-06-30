@@ -9,7 +9,7 @@ Template.instanceCreate.events({
             url: instanceUrl,
             name: instanceName
         }, function (error) {
-            $('.button').on('transitionend', function () {
+            $('.button').on('animationend', function () {
                 Router.go('login');
             }).addClass('success');
         })

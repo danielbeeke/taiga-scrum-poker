@@ -26,12 +26,17 @@
 
   .button-text {
     opacity: 1;
-    transition: opacity $speed $easing;
+    transition: opacity $speed $easing forward;
   }
 
   &.success {
     .success-icon {
-      opacity: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center center;
+      animation: success 1s;
+      animation-fill-mode: forwards;
     }
 
     .button-text {
@@ -52,10 +57,10 @@ body:not([data-animation]) {
 }
 
 @keyframes success {
-  0%   { background-color: $primary; }
-  50%  { background-color: green; }
-  90% { background-color: $primary; }
-  100% { background-color: $primary; }
+  0%   { opacity: 0; transform: scale(1); }
+  50%  { opacity: 1; transform: scale(1.3); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(1); }
 }
 
 .success-icon {
