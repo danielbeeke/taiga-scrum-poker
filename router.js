@@ -4,13 +4,14 @@ var animations = {
   'login_TO_instance-create': function (next) {
     $('.login-form-wrapper .form-items').on('transitionend', function (e) {
      if (e.target == $('.login-form-wrapper .form-items')[0] && e.originalEvent.propertyName == 'max-height') {
-        next();
+       next();
      }
     });
 
     setTimeout(function () {
       $('.login-form-wrapper .form-items').addClass('overflowHidden')
     }, 300);
+
   },
   'instance-create_TO_login': function (next) {
     $('.instance-create-form-wrapper .form-items').on('transitionend', function (e) {
@@ -18,10 +19,6 @@ var animations = {
         next();
       }
     });
-
-    setTimeout(function () {
-      //$('.login-form-wrapper .form-items').addClass('overflowHidden')
-    }, 300);
   }
 };
 
@@ -29,17 +26,17 @@ Router.configure({
   layoutTemplate: 'main',
   loadingTemplate: 'loading',
   onBeforeAction: function () {
-    var animationName;
-    var realNext = this.next;
-    var next = function () {
+    var next = this.next;
+    var proxyNext = function () {
       setTimeout(function () {
         $('body').attr('data-animation', '');
-      }, 200);
-      realNext();
-    };
+      }, 300);
+      next();
+    }
     var routeName = Router.current().route.getName();
+    var animationName = previousRoute + '_TO_' + routeName;
 
-    if (!Meteor.user() && routeName != 'instance-create') {
+    if (!Meteor.user() && routeName != 'instance-create' && routeName != 'login') {
       Router.go('login')
     }
 
@@ -47,30 +44,19 @@ Router.configure({
       Meteor.call('tables-user-visit', this.params._id);
     }
 
-    if (routeName != 'table' && routeName != 'table-play') {
+    if (this.params._id && routeName != 'table' && routeName != 'table-play') {
       Meteor.call('tables-user-leave', this.params._id);
     }
 
-    if (previousRoute && routeName) {
-      animationName = previousRoute + '_TO_' + routeName;
-
-      if (animations[animationName]) {
-        if (typeof animations[animationName] == 'function') {
-          animations[animationName](next);
-        }
-
-        $('body').attr('data-animation', animationName);
-      }
-      else {
-        previousRoute = routeName;
-        next();
-      }
+    if (animations[animationName]) {
+      animations[animationName](proxyNext);
+      $('body').attr('data-animation', animationName);
     }
     else {
       next();
     }
   },
-  onAfterAction: function () {
+  onStop: function () {
     previousRoute = Router.current().route.getName();
   }
 });

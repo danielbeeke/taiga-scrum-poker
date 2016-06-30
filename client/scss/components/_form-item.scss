@@ -93,6 +93,7 @@
     text-align: center;
     color: $white;
     line-height: 60px;
+    transition: opacity $speed $easing;
 
     a {
       color: white;
@@ -124,17 +125,12 @@
 
 .form-items {
   position: relative;
+  height: 600px;
   @include clearfix;
-  max-height: 600px;
+  max-height: 400px;
   transition: max-height $speed $easing 0s, opacity $speed $easing 0s;
 
   &.overflowHidden {
     overflow: hidden;
-  }
-}
-
-body:not([data-animation=""]) {
-  .form-items {
-    transition: max-height $speed $easing $speed, opacity $speed $easing $speed;
   }
 }

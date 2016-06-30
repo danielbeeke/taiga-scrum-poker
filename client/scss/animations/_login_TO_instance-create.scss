@@ -1,6 +1,7 @@
 [data-animation="login_TO_instance-create"] {
   .login-form-wrapper {
     .form-items {
+      transition: max-height $speed $easing $speed, opacity $speed $easing $speed;
       opacity: 0;
       max-height: 129px;
     }
@@ -14,7 +15,8 @@
       color: $primary;
 
       &:hover {
-        color: darken($primary, 12);
+        background: $primary;
+        color: $primary;
       }
     }
   }
@@ -33,7 +35,8 @@
       color: $primary;
 
       &:hover {
-        color: darken($primary, 12);
+        background: $primary;
+        color: $primary;
       }
     }
   }
