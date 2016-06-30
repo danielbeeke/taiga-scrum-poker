@@ -126,9 +126,15 @@
   position: relative;
   @include clearfix;
   max-height: 600px;
-  transition: all $speed $easing $speed;
+  transition: max-height $speed $easing 0s, opacity $speed $easing 0s;
 
   &.overflowHidden {
     overflow: hidden;
+  }
+}
+
+body:not([data-animation=""]) {
+  .form-items {
+    transition: max-height $speed $easing $speed, opacity $speed $easing $speed;
   }
 }
