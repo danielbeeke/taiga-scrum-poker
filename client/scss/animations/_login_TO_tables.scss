@@ -1,12 +1,16 @@
 [data-animation="login_TO_tables"] {
   .login-form {
     padding: 0;
+    transition: padding $speed $easing;
   }
 
   .form-actions {
     margin: 0;
+    transition: margin $speed $easing;
+
 
     &:after {
+      transition: opacity $speed $easing;
       opacity: 0;
     }
   }
@@ -16,17 +20,30 @@
     margin: 0 auto;
     display: block;
     float: none;
+    transition: all $speed $easing;
     border-radius: 50%;
+    background-color: $secondary;
+  }
+
+  .login-form {
+    box-shadow: 0 0 0 0 rgba($secondary, 0);
   }
 
   .login-form-wrapper {
     .form-items {
       opacity: 0;
-      max-height: 1px;
+      overflow: hidden;
+      max-height: 0;
+    }
+
+    .form-actions {
+      transition: all $speed $easing;
+      background-color: $primary;
     }
 
     .link,
     .page-title {
+      max-height: 0;
       opacity: 0;
     }
 

@@ -57,10 +57,10 @@ var animations = {
       }
     });
   },
-  'login_TO_tables': function () {
+  'login_TO_tables': function (next) {
     $('.login-form-wrapper .form-items').on('transitionend', function (e) {
       if (e.target == $('.login-form-wrapper .form-items')[0] && e.originalEvent.propertyName == 'max-height') {
-        next();
+        //next();
       }
     });
 
@@ -137,13 +137,13 @@ Router.route('/logout', function () {
 Router.route('/tables', {
   name: 'tables',
   title: 'Tables',
-  waitOn: function() {
-    return [
-      Meteor.subscribe('tables'),
-      Meteor.subscribe('users'),
-      Meteor.subscribe('projects')
-    ];
-  }
+  //waitOn: function() {
+  //  return [
+  //    Meteor.subscribe('tables'),
+  //    Meteor.subscribe('users'),
+  //    Meteor.subscribe('projects')
+  //  ];
+  //}
 });
 
 Router.route('/tables/create', {

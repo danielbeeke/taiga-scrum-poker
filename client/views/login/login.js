@@ -26,7 +26,6 @@ Template.login.events({
         }
       }
     })
-
   },
   "click #create-taige-url": function (event, template) {
     Router.go('instance-create');
