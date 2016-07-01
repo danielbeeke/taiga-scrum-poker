@@ -10,7 +10,13 @@ Template.instanceCreate.events({
             name: instanceName
         }, function (error) {
             $('.button').on('animationend', function () {
-                Router.go('login');
+                var routeName = 'login';
+
+                if (Router.current().params.query && Router.current().params.query.destination) {
+                    routeName = Router.current().params.query.destination;
+                }
+
+                Router.go(routeName);
             }).addClass('success');
         })
     }
