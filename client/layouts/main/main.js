@@ -83,6 +83,52 @@ Template.registerHelper('first', function (index) {
     }
 });
 
+
+Template.registerHelper('pathForDestination', function (options) {
+    var routeName;
+
+    if (arguments.length > 1) {
+        routeName = arguments[0];
+        options = arguments[1] || {};
+    }
+
+    var opts = options && options.hash;
+
+    if (Router.current().params.query && Router.current().params.query.destination) {
+        routeName = Router.current().params.query.destination;
+    }
+
+    opts = opts || {};
+
+    var path = '';
+    var query = opts.query;
+    var hash = opts.hash;
+    routeName = routeName || opts.route;
+    var data = _.extend({}, opts.data || this);
+
+    var route = Router.routes[routeName];
+
+    if (route) {
+        _.each(route.handler.compiledUrl.keys, function (keyConfig) {
+            var key = keyConfig.name;
+            if (_.has(opts, key)) {
+                data[key] = EJSON.clone(opts[key]);
+
+                // so the option doesn't end up on the element as an attribute
+                delete opts[key];
+            }
+        });
+
+        path = route.path(data, {query: query, hash: hash});
+    }
+    else {
+        warn(route, "pathFor couldn't find a route named " + JSON.stringify(routeName));
+    }
+
+    return path;
+});
+
+
 Template.registerHelper('compare', function(v1, v2) {
     if (typeof v1 === 'object' && typeof v2 === 'object') {
         return _.isEqual(v1, v2); // do a object comparison

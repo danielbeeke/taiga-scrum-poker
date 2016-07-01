@@ -12,7 +12,7 @@ Template.passwordReset.events({
 
     },
     "click #create-taige-url": function (event, template) {
-        Router.go('instance-create');
+        Router.go('instance-create', {}, {query: 'destination=password-reset'});
     },
     "click .delete-taiga-instance": function (event, template) {
         var that = this;
