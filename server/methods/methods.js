@@ -52,8 +52,6 @@ Meteor.methods({
             }
         });
 
-        console.log(response.statusCode)
-
         if (response.statusCode == 200) {
             return true;
         }

@@ -6,10 +6,15 @@
   .form-item-inner {
     background-color: $white;
     max-height: 57px;
-    transition: max-height $speed $easing, border $speed $easing;
+    transition: max-height $speed $easing, border $speed $easing, box-shadow $speed $easing;
     overflow: hidden;
     margin-bottom: $padding;
     border: 2px solid $grey-light;
+    box-shadow: 0 0 5px -2px rgba($secondary, 0);
+  }
+
+  &:hover .form-item-inner {
+    box-shadow: 0 0 5px -2px $secondary;
   }
 
   // Triangle.
@@ -141,9 +146,9 @@
     }
 
     // Bad contrast with submit button.
-    //.form-item-inner {
-    //  border-color: $primary !important;
-    //}
+    .form-item-inner {
+      border-color: $primary !important;
+    }
 
     &:before {
       border-color: transparent transparent $primary transparent;
