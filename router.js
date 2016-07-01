@@ -19,6 +19,25 @@ var animations = {
         next();
       }
     });
+  },
+  'login_TO_password-reset': function (next) {
+    $('.login-form-wrapper .form-items').on('transitionend', function (e) {
+      if (e.target == $('.login-form-wrapper .form-items')[0] && e.originalEvent.propertyName == 'max-height') {
+        next();
+      }
+    });
+
+    setTimeout(function () {
+      $('.login-form-wrapper .form-items').addClass('overflowHidden')
+    }, 300);
+
+  },
+  'password-reset_TO_login': function (next) {
+    $('.password-reset-form-wrapper .form-items').on('transitionend', function (e) {
+      if (e.target == $('.password-reset-form-wrapper .form-items')[0] && e.originalEvent.propertyName == 'max-height') {
+        next();
+      }
+    });
   }
 };
 
@@ -37,7 +56,7 @@ Router.configure({
     var routeName = Router.current().route.getName();
     var animationName = previousRoute + '_TO_' + routeName;
 
-    if (!Meteor.user() && routeName != 'instance-create' && routeName != 'login') {
+    if (!Meteor.user() && routeName != 'instance-create' && routeName != 'login' && routeName != 'password-reset') {
       Router.go('login')
     }
 
@@ -50,6 +69,7 @@ Router.configure({
     }
 
     if (animations[animationName]) {
+      console.log(animationName)
       animations[animationName](proxyNext);
       $('body').attr('data-animation', animationName);
     }
@@ -74,7 +94,6 @@ Router.route('/', function () {
 Router.route('/login', {
   name: 'login',
   title: 'Login',
-  //layoutTemplate: false,
   waitOn: function() {
     return [
       Meteor.subscribe('instances')
@@ -136,10 +155,17 @@ Router.route('/success', {
   title: 'Success'
 });
 
-
 Router.route('/instances/create', {
   name: 'instance-create',
   title: 'Create an instance',
+  waitOn: function() {
+    return Meteor.subscribe('instances');
+  }
+});
+
+Router.route('/password-reset', {
+  name: 'password-reset',
+  title: 'Reset your password',
   waitOn: function() {
     return Meteor.subscribe('instances');
   }

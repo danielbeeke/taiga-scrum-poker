@@ -1,3 +1,4 @@
+.password-reset-form-wrapper,
 .login-form-wrapper {
   max-width: 400px;
   margin: 0 auto;
@@ -8,10 +9,7 @@
   transform: translateY(-50%);
   z-index: 2;
 
-  .form-items {
-    max-height: 228px;
-  }
-
+  .password-reset-form,
   .login-form {
     background: $white;
     box-shadow: 0 0 6px -4px $secondary;
@@ -90,11 +88,31 @@
   }
 }
 
+.password-reset-form-wrapper {
+  .form-items {
+    max-height: 156px;
+  }
+}
+
+.login-form-wrapper {
+  .form-items {
+    max-height: 228px;
+  }
+}
+
+body.password-reset,
 body.login {
   background: $secondary;
 
   @media screen and (max-height: 660px) {
     .login-form-wrapper {
+      top: $padding;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-height: 660px) {
+    .password-reset-form-wrapper {
       top: $padding;
       transform: translateY(0);
     }
