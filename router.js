@@ -49,6 +49,13 @@ var animations = {
     setTimeout(function () {
       $('.password-reset-form-wrapper .form-items').addClass('overflowHidden')
     }, 300);
+  },
+  'instance-create_TO_password-reset': function (next) {
+    $('.instance-create-form-wrapper .form-items').on('transitionend', function (e) {
+      if (e.target == $('.instance-create-form-wrapper .form-items')[0] && e.originalEvent.propertyName == 'max-height') {
+        next();
+      }
+    });
   }
 };
 
