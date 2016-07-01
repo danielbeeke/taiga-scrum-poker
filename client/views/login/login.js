@@ -34,7 +34,7 @@ Template.login.events({
   "click .delete-taiga-instance": function (event, template) {
     var that = this;
     event.preventDefault();
-    template.$(event.target).parents('.radios-as-select').addClass('just-clicked').addClass('hover');
+    template.$(event.target).parents('.radios-as-select').addClass('hover');
     template.$(event.target).parent().parent().on('transitionend', function (e) {
       if (e.originalEvent.propertyName == 'max-height') {
         $('.radios-as-select').removeClass('just-clicked').removeClass('hover');
