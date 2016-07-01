@@ -10,6 +10,18 @@ Template.passwordReset.events({
             url: template.find('[name="taiga-url"]:checked').value
         };
 
+        $('.button').addClass('loading');
+
+        Meteor.call('sent-reset-mail', credentials, function (err, result) {
+            if (result) {
+                $('.button').removeClass('loading').on('animationend', function () {
+                    Router.go('login');
+                }).addClass('success');
+            }
+            else {
+                Session.set('errorMessage', 'Something went wrong, please try again.');
+            }
+        });
     },
     "click #create-taige-url": function (event, template) {
         Router.go('instance-create', {}, {query: 'destination=password-reset'});

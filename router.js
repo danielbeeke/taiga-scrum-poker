@@ -56,6 +56,15 @@ var animations = {
         next();
       }
     });
+  },
+  'login_TO_tables': function () {
+    $('.login-form-wrapper .form-items').on('transitionend', function (e) {
+      if (e.target == $('.login-form-wrapper .form-items')[0] && e.originalEvent.propertyName == 'max-height') {
+        next();
+      }
+    });
+
+    $('.password-reset-form-wrapper .form-items').addClass('overflowHidden')
   }
 };
 
@@ -67,6 +76,7 @@ Router.configure({
     var proxyNext = function () {
       setTimeout(function () {
         $('body').removeAttr('data-animation');
+        Session.set('errorMessage', '');
       }, 300);
       next();
     };

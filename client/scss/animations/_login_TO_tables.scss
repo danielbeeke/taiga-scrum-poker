@@ -1,0 +1,40 @@
+[data-animation="login_TO_tables"] {
+  .login-form {
+    padding: 0;
+  }
+
+  .form-actions {
+    margin: 0;
+
+    &:after {
+      opacity: 0;
+    }
+  }
+
+  .button {
+    width: 90px;
+    margin: 0 auto;
+    display: block;
+    float: none;
+    border-radius: 50%;
+  }
+
+  .login-form-wrapper {
+    .form-items {
+      opacity: 0;
+      max-height: 1px;
+    }
+
+    .link,
+    .page-title {
+      opacity: 0;
+    }
+
+    .button {
+      .success-icon,
+      .button-text {
+        opacity: 0;
+      }
+    }
+  }
+}

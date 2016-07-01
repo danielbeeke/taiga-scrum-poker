@@ -140,9 +140,10 @@
       color: $primary;
     }
 
-    .form-item-inner {
-      border-color: $primary !important;
-    }
+    // Bad contrast with submit button.
+    //.form-item-inner {
+    //  border-color: $primary !important;
+    //}
 
     &:before {
       border-color: transparent transparent $primary transparent;

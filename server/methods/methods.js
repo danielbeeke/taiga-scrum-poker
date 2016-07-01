@@ -44,5 +44,18 @@ Meteor.methods({
     'estimation-delete': function (estimationSelector) {
         estimationSelector.uid = this.userId;
         Estimations.remove(estimationSelector);
-    }
+    },
+    'sent-reset-mail': function (credentials) {
+        var response = HTTP.post(credentials.url + '/users/password_recovery', {
+            data: {
+                'username': credentials.name
+            }
+        });
+
+        console.log(response.statusCode)
+
+        if (response.statusCode == 200) {
+            return true;
+        }
+    },
 })
