@@ -1,7 +1,7 @@
 [data-animation="login_TO_instance-create"] {
   .login-form-wrapper {
     .form-items {
-      transition: max-height $speed $easing $speed, opacity $speed $easing $speed;
+      transition: max-height $speed $easing $speed, opacity $speed $easing ($speed  /2);
       opacity: 0;
       max-height: 129px;
     }
